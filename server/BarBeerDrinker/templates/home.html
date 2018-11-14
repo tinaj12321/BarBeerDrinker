@@ -1,13 +1,14 @@
+{% extends "navbar.html" %}
 <!doctype html>
-<html>
 	<head>
 		<title> This is the title of the Webpage!</title>
 	</head>
-	<body>
+{{ super() }}
+{% block page %}
 		<h1>This is a heading.</h1>
 		<p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents. </p>
 		<p>
 			<a href = "https://www.youtube.com/watch?v=xri4ewvIgno" target="_blank" >If im not chillin, I prolly got my grill in.. yerrr!</a>
 		</p>
-	</body>
-</html>
+{% endblock %}	
+

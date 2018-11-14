@@ -1,6 +1,7 @@
 {% extends "navbar.html" %}
 {% block page %}
 {{ super() }}
+ <div class = "col-md-6 text-center">
 	<ul class="list-group">	
 		{% for r in result %}
 			<li class="list-group-item"><a href={{ url_for('consumables_sold_most', consumable = r['Consumable'] ) }}>{{r}}</li>
@@ -12,4 +13,5 @@
 			<li class="list-group-item"> {{ r2 }} </li>
 		{% endfor %}
 	</ul>
+</div>
 {% endblock %}
