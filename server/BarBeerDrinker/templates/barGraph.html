@@ -1,39 +1,15 @@
-{% extends "navbar.html" %}
-
-{% block page %}
-
-{{ super() }}
-<div class = "container">
- <div class = "col-md-6 text-center">
-		<ul class="list-group">
-			{% for r in result %}
-				<li class="list-group-item"><a href={{ url_for('top_spender', bar = r['Bar'] ) }}>{{r}} </li>
-			{% endfor %}
-
-             {% for r1 in result1 %}
-                <li class="list-group-item"> {{r1 }}</li>
-              {% endfor %}
-			{% for r2 in result2 %}
-				<li class="list-group-item"> {{r2}} </li>
-			{% endfor %}
-			{% for r3 in result3 %}
-				<li class="list-group-item"> {{r3}} </li>
-			{% endfor %}
-		</ul>
-</div>
-</div>
-<div class="container">
-<div class="col-md-6 text-center">
-    <div class="panel panel-default">
-         <div class="panel-heading">
-                 <h3>Bar Series</h3>
-            </div>
+<html>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Bar Series</h3>
+                </div>
                 <div class="panel-body">
                     <div id="chart1"></div>
                 </div>
             </div>
         </div>
-</div>
+</html>
 
 <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
 <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
@@ -59,8 +35,3 @@
                 data: data1
             }]
         });
-</script>
-{% endblock page %}
-
-
-
