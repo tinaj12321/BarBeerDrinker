@@ -14,7 +14,7 @@ def get_bars():
 
 def get_casinos():
         with engine.connect() as con:
-                rs = con.execute("SELECT Casino, City, Address, City FROM Baars;")
+                rs = con.execute("SELECT Casino, City, Address, City FROM Bars;")
                 return [dict(row) for row in rs]
 
 def top_spenders(bar):
