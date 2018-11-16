@@ -21,7 +21,7 @@ def get_bars():
 
 @app.route('/api/bar/<bar>')
 def top_spender(bar):
-	return render_template('bar.html', result1=database.top_spenders(bar), result2=database.top_beers(bar), result3=database.top_consumables(bar))
+	return render_template('bar.html', result1=database.top_spenders(bar), result2=database.top_beers(bar), result3=database.top_consumables(bar), title="Top Spenders", max=1000, labels=bar_labels, values=bar_values)
 
 @app.route('/api/consumable')
 def get_consumables():
