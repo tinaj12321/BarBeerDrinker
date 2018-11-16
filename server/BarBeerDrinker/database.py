@@ -13,9 +13,9 @@ def get_bars():
 		return [dict(row) for row in rs]
 
 def get_casinos():
-            with engine.connect() as con:
-                                rs = con.execute("SELECT Casino, City, Address, City FROM bars;")
-                                                return [dict(row) for row in rs]
+        with engine.connect() as con:
+                rs = con.execute("SELECT Casino, City, Address, City FROM bars;")
+                return [dict(row) for row in rs]
 
 def top_spenders(bar):
 	with engine.connect() as con:
