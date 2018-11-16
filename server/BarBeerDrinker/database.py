@@ -14,12 +14,12 @@ def get_bars():
 
 def get_casinos():
         with engine.connect() as con:
-                rs = con.execute("SELECT Casino, City, Address, City FROM Bars;")
+                rs = con.execute("SELECT DISTINCT Casino, City, Address, City FROM Bars;")
                 return [dict(row) for row in rs]
 
 def top_spenders(bar):
 	with engine.connect() as con:
-		top_spender = sql.text("SELECT p.`Name`, SUBSTRING(b.`Occurred day of week and time`, 3,6) AS time_sold, b.`Occurred month and day` AS month_and_day, b.`total of all ids with tip and tax` AS total FROM Bills b, Pays p, Frequents f WHERE f.`Drinker`=p.`DRINKER` AND p.`BAR`=b.`bar` AND p.bar=:b AND b.transactionID = p.`TRANSACTION ID` GROUP BY b.`total with tip and tax`, p.`DRINKER` ORDER BY b.`total with tip and tax` DESC;")
+            top_spender = sql.text("SELECT p.`Name`,b.total, b.transactionID  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.bar=:b AND b.transactionID = p.transactionID GROUP BY p.`Name` ORDER BY total DESC LIMIT 5;")
 		rs = con.execute(top_spender, b=bar)
 		if rs is None:
 			return None
@@ -27,33 +27,33 @@ def top_spenders(bar):
 
 def top_beers(bar):
 	with engine.connect() as con:
-		top_beer = sql.text("SELECT s.`Consumable`, count(b.`Item`) AS amount_sold, SUBSTRING(b.`Occurred day of week and time`, 3,6)AS time_sold, b.`Occurred month and time` AS month_and_day FROM Sells s, Bills b WHERE s.`Consumable`=b.`Item` AND s.`Bars`=b.`Bar`AND b.`Bar`=:b GROUP BY b.`Item`, b.`Bar` ORDER BY count(b.`Item`) DESC;")
-		rs = con.execute(top_beer, b=bar)
-		if rs is None:
-			return None
-		return [dict(row) for row in rs]
+            top_beer = sql.text("SELECT b.`consumable`, count(b.`consumable`) AS amount_sold FROM Bills b WHERE b.`Bar`=:b GROUP BY b.`consumable`, b.`bar` ORDER BY count(b.`consumable`) DESC LIMIT 5;;")
+            rs = con.execute(top_beer, b=bar)
+            if rs is None:
+		    return None
+            return [dict(row) for row in rs]
 
 def top_consumables(bar):
 	with engine.connect() as con:
-		top_consumables=sql.text("SELECT c.`Manufacturer`, count(c.`Consumable`) AS amount_sold, SUBSTRING(b.`Occurred day of week and time`, 3,6) AS time_sold, b.`Occurred month and day` AS month_and_day FROM Consumables c, Sells s WHERE c.`Consumable` = s.`Consumable` AND s.`Bars`=:b GROUP BY c.`Manufacturer` ORDER BY count(c.`Consumable`) DESC;")
-		rs = con.execute(top_consumables, b=bar)
-		if rs is None:
-                        return None
-		return [dict(row) for row in rs]
+            top_consumables=sql.text("SELECT Consumables.Manufacturer, count(Bills.consumable) AS num_sold FROM Bills LEFT JOIN Consumables ON Bills.consumable = Consumables.Consumable WHERE Bills.bar =:b GROUP BY Bills.consumable ORDER BY num_sold DESC LIMIT 5;")
+            rs = con.execute(top_consumables, b=bar)
+            if rs is None:
+                return None
+            return [dict(row) for row in rs]
  
 def get_bill():
 	with engine.connect() as con:
- 		rs = con.execute("SELECT Name, Bar, Item, `Transaction ID`, `Occurred month and day`, `Occurred day of week and time`, tip, subtotal, `total of all ids with tip and tax` FROM Bills;")
+ 		rs = con.execute("SELECT * FROM Bills;")
  		return [dict(row) for row in rs]
 
 def get_consumables():
 	with engine.connect() as con:
- 		rs = con.execute("SELECT Consumable, Manufacturer, Price FROM Consumables;")
+ 		rs = con.execute("SELECT *  FROM Consumables;")
  		return [dict(row) for row in rs]
 
 def consumable_sold_most(consumable):
 	with engine.connect() as con:
-		consumable_sold_most = sql.text("SELECT b.Bar, s.Consumable, count(*) AS consumables_sold, b.`Occurred day of week and time` AS month_and_day, FROM Sells s, Bills b WHERE s.Consumable=:c  AND b.Bar = s.Bars GROUP BY  b.Bar, s.Consumable ORDER BY count(*) DESC;")
+            consumable_sold_most = sql.text("SELECT bar, count(consumable) FROM Bills WHERE consumable=:c GROUP BY bar ORDER BY count(consumable) DESC LIMIT 5SELECT bar, count(consumable) FROM Bills WHERE consumable=:c GROUP BY bar ORDER BY count(consumable) DESC LIMIT 5;")
 		rs = con.execute(consumable_sold_most, c=consumable)
 		if rs is None:
 			return None
@@ -61,7 +61,7 @@ def consumable_sold_most(consumable):
 
 def drinkers_who_like(consumable):
 	with engine.connect() as con:
-		drinkers_who_like = sql.text("SELECT DISTINCT l.Person, SUBSTRING(b.`Occurred day of week and time`, 3,6) AS time_transaction_occurred, b.`Occurred month and day` AS month_and_day, count(*) AS amt_drinker_buys FROM Likes l, Pays p, Bills b WHERE l.Person=p.DRINKER  AND l.Consumable=:c AND l.Consumable=b.item GROUP BY  l.Person, SUBSTRING(b.`occurred`, 3,6) ORDER BY SUBSTRING(b.`occurred`, 3,6) ASC;")
+            drinkers_who_like = sql.text("SELECT p.`Name`, b.consumable, count(consumable) as num_bought From Pays p LEFT JOIN Bills b ON p.transactionID = b.transactionID WHERE b.consumable=:c GROUP BY p.`Name`, b.consumable ORDER BY num_bought DESC LIMIT 5;")
 		rs = con.execute(drinkers_who_like, c=consumable)
 		if rs is None:
 			return None
@@ -70,12 +70,12 @@ def drinkers_who_like(consumable):
 def get_drinkers():
 
 	with engine.connect() as con:
-                 rs = con.execute("SELECT Name, `Phone Number`, City, Address FROM Drinker;")
+                 rs = con.execute("SELECT * FROM Drinker;")
                  return [dict(row) for row in rs]
 
 def info_on_drinker(drinker):
 	with engine.connect() as con:
-		transactionID  = sql.text("SELECT p.`Transaction ID`,p.Bar,SUBSTRING(b.`occurred`, 3,6)  AS time_occurred FROM Pays p, Bills b WHERE b.`transactionID` = p.`Transaction ID` AND p.DRINKER = :d GROUP BY SUBSTRING(b.`occurred`, 3,6), p.BAR, p.`TRANSACTION ID` ORDER BY SUBSTRING(b.`occurred`, 3,6) ASC;")
+            transactionID  = sql.text("SELECT b.transactionId, SUBSTRING(b.time_occurred,3,6) AS time_occurred, b.bar FROM Pays p LEFT JOIN Bills b ON p.transactionID = b.transactionID WHERE p.`Name` =:d GROUP BY b.transactionID ORDER BY time_occurred;")
 		rs=con.execute(transactionID, d = drinker) 
 		if rs is None:
 			return None
@@ -83,24 +83,24 @@ def info_on_drinker(drinker):
 
 def get_frequents():
 	with engine.connect() as con:
-		rs = con.execute("SELECT Drinker, Bar FROM Frequents;")
+		rs = con.execute("SELECT * FROM Frequents;")
 		return [dict(row) for row in rs]
 
 def get_likes():
 	with engine.connect() as con:
-		rs = con.execute("SELECT Person, Consumable FROM Likes;")
+		rs = con.execute("SELECT * FROM Likes;")
 		return [dict(row) for row in rs]
 
 
 def get_pays():
 
 	with engine.connect() as con:
-		rs = con.execute("SELECT BAR, DRINKER, `TRANSACTION ID` FROM Pays;")
+		rs = con.execute("SELECT * FROM Pays;")
 		return [dict(row) for row in rs]
 
 def get_sells():
 
 	with engine.connect() as con:
-		rs = con.execute("SELECT Bars, Consumable, Price FROM Sells;")
+		rs = con.execute("SELECT * FROM Sells;")
 		return [dict(row) for row in rs]
 
