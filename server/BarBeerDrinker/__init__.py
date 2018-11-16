@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/api/drinker')
 def get_drinkers():
-        return render_template('drinker.html', result=database.get_drinker())
+        return render_template('drinker.html', result=database.get_drinkers())
 
 @app.route('/api/drinker/<drinker>')
 def info_on_drinker(drinker):
