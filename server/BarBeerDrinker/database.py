@@ -9,7 +9,7 @@ engine = create_engine(config.database_uri)
 #bar function
 def get_bars():
 	with engine.connect() as con:
-		rs = con.execute("SELECT, Casino, City, Address, City, Hours  FROM Bars;")
+		rs = con.execute("SELECT Bar, Casino, City, Address, City, Hours  FROM Bars;")
 		return [dict(row) for row in rs]
 
 def get_casinos():
