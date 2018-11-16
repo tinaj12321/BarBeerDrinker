@@ -22,10 +22,16 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Bar</a>
-          <a class="dropdown-item" href="#">Consumable</a>
-          <a class="dropdown-item" href="#">Drinker</a>
-          <a class="dropdown-item" href="#">Casinos</a>
+          {% for r in result %}
+          <a class="dropdown-item" href={{ url_for('get_bars', r )}}>Bar</a>
+          {% endfor %}
+          {% for r in result %}
+          <a class="dropdown-item" href={{ url_for('get_consumable', r )}}>Consumable</a>
+          {% endfor %}
+          {% for r in result %}
+          <a class="dropdown-item" href={{ url_for('get_drinker', r )}}>Drinker</a>
+          {% endfor %}
+          <a class="dropdown-item" href={{ url_for('get_casinos', bar = r['Bar'] )}}>Casinos</a>
 
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
