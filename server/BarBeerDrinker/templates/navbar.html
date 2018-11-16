@@ -31,8 +31,9 @@
           {% for r in result %}
           <a class="dropdown-item" href={{ url_for('get_drinker', r )}}>Drinker</a>
           {% endfor %}
-          <a class="dropdown-item" href={{ url_for('get_casinos', bar = r['Bar'] )}}>Casinos</a>
-
+          {% for r in result %}
+          <a class="dropdown-item" href={{ url_for('get_casinos', r )}}>Casinos</a>
+          {% endfor %}
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

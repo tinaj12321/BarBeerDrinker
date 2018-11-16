@@ -11,6 +11,9 @@ def get_drinkers():
 def info_on_drinker(drinker):
 	return render_template('drinker.html', result1=database.info_on_drinker(drinker))
 
+@app.route('/api/casino')
+def get_casino():
+	return render_template('casino.html', result=database.get_casinos())
 
 @app.route('/api/bar')
 def get_bars():
