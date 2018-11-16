@@ -4,7 +4,7 @@
  <div class = "col-md-6 text-center">
 	<ul class="list-group">	
 		{% for r in result %}
-			<li class="list-group-item"><a href={{ url_for('get_casinos()', r ) }}>{{r}}</li>
+			<li class="list-group-item"><a href={{ url_for('get_casino') }}>{{r}}</li>
 		{% endfor %}
 	</ul>
 </div>
