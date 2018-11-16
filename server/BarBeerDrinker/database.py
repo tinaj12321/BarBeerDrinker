@@ -12,6 +12,11 @@ def get_bars():
 		rs = con.execute("SELECT Bar, Casino, City, Address, City, Hours  FROM bars;")
 		return [dict(row) for row in rs]
 
+def get_casinos():
+            with engine.connect() as con:
+                                rs = con.execute("SELECT Casino, City, Address, City FROM bars;")
+                                                return [dict(row) for row in rs]
+
 def top_spenders(bar):
 	with engine.connect() as con:
 		top_spender = sql.text("SELECT p.`Name`, SUBSTRING(b.`Occurred day of week and time`, 3,6) AS time_sold, b.`Occurred month and day` AS month_and_day, b.`total of all ids with tip and tax` AS total FROM bill b, pays p, frequents f WHERE f.`Drinker`=p.`DRINKER` AND p.`BAR`=b.`bar` AND p.bar=:b AND b.transactionID = p.`TRANSACTION ID` GROUP BY b.`total with tip and tax`, p.`DRINKER` ORDER BY b.`total with tip and tax` DESC;")
