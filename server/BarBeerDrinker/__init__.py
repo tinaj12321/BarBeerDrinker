@@ -23,6 +23,34 @@ def info_on_drinker(drinker):
 def get_casino():
 	return render_template('casino.html', result=database.get_casinos())
 
+@app.route('/api/modify')
+def modify():
+	return render_template('modification.html')
+
+@app.route('/api/modify/add')
+def add():
+	return render_template('add.html')
+
+@app.route('/api/modify/add/<table>')
+def add_item():
+	return render_template('add.html')
+
+@app.route('/api/modify/update')
+def update():
+	return render_template('update.html')
+
+@app.route('/api/modify/update/<table>')
+def update_item():
+	return render_template('update.html')
+
+@app.route('/api/modify/delete')
+def delete():
+	return render_template('delete.html')
+
+@app.route('/api/modify/delete/<table>')
+def delete_item(table):
+	return render_template('delete.html')
+
 @app.route('/api/casinos/<casino>')
 def get_casino_info(casino):
 	return render_template('casino.html', text_title=casino, result1=database.get_casino_bars(casino))
