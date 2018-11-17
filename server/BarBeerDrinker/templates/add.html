@@ -37,19 +37,19 @@
 			Hours:<br>
 			Please Enter in 24 Hour Format<br>Ex: A bar opens at 3PM and closes at 3AM --> 15|00 -- 03|00 <br>
 			Monday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Tuesday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Wednesday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Thursday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Friday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Saturday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Sunday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]"><input type="text" name="Min_open" required="required" pattern="[0-59]"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]"><input type="text" name="Min_closed" required="required" pattern="[0-59]"><br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			<br>
 			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
 			<input type="submit" value="Submit">
@@ -68,10 +68,10 @@
 			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
 			Monday -> 1, Tuesday ->2 etc...<br>
 			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
-			<input type="text" name="day" required="required"><input type="text" name="hour_occur" required="required"><input type="text" name="min_occur" required="required" ><br>
+			<input type="text" name="day" required="required" pattern="[1-7]" minlength="1" maxlength="1"><input type="text" name="hour_occur" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="min_occur" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
 			Month and Day:<br>
-			Ex: October 31st --> 10|31<br>
-			<input type="text" name="month" required="required"><input type="text" name="day" required="required"><br>
+			Ex: May 9th --> 05|09<br>
+			<input type="text" name="month" required="required" pattern="[1-12]" minlength="2" maxlength="2"><input type="text" name="day" required="required" pattern="[1-31]" minlength="2" maxlength="2"><br>
 			TransactionID:<br>
 			<input type="text" name="TransID" required="required"><br>
 			Tip:<br>
@@ -166,7 +166,7 @@
 		<form action="/submission" method="post">
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
-			Consu,able:<br> 
+			Consumable:<br> 
 			<input type="text" name="Consumable" required="required"><br>
 			Price:<br>
 			<input type="number" name="price" required="required"><br>
