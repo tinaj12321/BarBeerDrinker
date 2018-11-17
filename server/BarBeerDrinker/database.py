@@ -77,13 +77,19 @@ def beers_ordered_most(drinker):
 		return None
 	return [dict(row) for row in rs]
 
-def time_distribution_of_drinker(drinker):
+def spending_of_drinker(drinker):
 	time_dist = sql.text("SELECT b.bar,b.total  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.Name=:d AND b.transactionID = p.transactionID GROUP BY b.bar ORDER BY total DESC;")
 	rs=con.execute(time_dist, d = drinker)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
+def monthly_breakdown(drinker):
+	monthly_breakdown = sql.text("SELECT REPLACE();")
+	rs=con.execute(monthly_breakdown, d = drinker)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
 
 def get_likes():
 	rs = con.execute("SELECT * FROM Likes;")
