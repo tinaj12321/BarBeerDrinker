@@ -7,11 +7,53 @@
 	</head>
 {{ super() }}
 {% block page %}
-	<div class = "col-md-6 text-center">
+	<div class = "text-center">
 	<ul class="list-group">	
-			<li class="list-group-item"><a href={{ url_for('delete') }}>Delete</li>
-		
+	{% for r in result %}	
+		<h1>What do you want to delete from?</h1>
+			<li class="list-group-item"><a href={{ url_for('delete_Bars')}}>Bars</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Bills')}}>Bills</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Consumables')}}>Consumables</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Drinker')}}>Drinker</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Frequents')}}>Frequents</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Likes')}}>Likes</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Pays')}}>Pays</li>
+			<li class="list-group-item"><a href={{ url_for('delete_Sells')}}>Sells</li>
 	</ul>
+	{% endfor %}
+	{% for r1 in result1 %}
+		<h1>Deleting From Bars</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r2 in result2 %}
+		<h1>Deleting From Bills</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r3 in result3 %}
+		<h1>Deleting From Consumables</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r4 in result4 %}
+		<h1>Deleting From Drinker</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r5 in result5 %}
+		<h1>Deleting From Frequents</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r6 in result6 %}
+		<h1>Deleting From Likes</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r7 in result7 %}
+		<h1>Deleting From Pays</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r8 in result8 %}
+		<h1>Deleting From Sells</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
 </div>
 </div>
 </div>

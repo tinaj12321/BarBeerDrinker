@@ -7,11 +7,53 @@
 	</head>
 {{ super() }}
 {% block page %}
-	<div class = "col-md-6 text-center">
+	<div class = "text-center">
 	<ul class="list-group">	
-			<li class="list-group-item"><a href={{ url_for('update') }}>update</li>
-		
+	{% for r in result %}	
+		<h1>What do you want to update?</h1>
+			<li class="list-group-item"><a href={{ url_for('update_Bars')}}>Bars</li>
+			<li class="list-group-item"><a href={{ url_for('update_Bills')}}>Bills</li>
+			<li class="list-group-item"><a href={{ url_for('update_Consumables')}}>Consumables</li>
+			<li class="list-group-item"><a href={{ url_for('update_Drinker')}}>Drinker</li>
+			<li class="list-group-item"><a href={{ url_for('update_Frequents')}}>Frequents</li>
+			<li class="list-group-item"><a href={{ url_for('update_Likes')}}>Likes</li>
+			<li class="list-group-item"><a href={{ url_for('update_Pays')}}>Pays</li>
+			<li class="list-group-item"><a href={{ url_for('update_Sells')}}>Sells</li>
 	</ul>
+	{% endfor %}
+	{% for r1 in result1 %}
+		<h1>Updating Bars</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r2 in result2 %}
+		<h1>Updating Bills</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r3 in result3 %}
+		<h1>Updating Consumables</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r4 in result4 %}
+		<h1>Updating Drinker</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r5 in result5 %}
+		<h1>Updating Frequents</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r6 in result6 %}
+		<h1>Updating Likes</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r7 in result7 %}
+		<h1>Updating Pays</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+	{% for r8 in result8 %}
+		<h1>Updating Sells</h1>
+		<p>Textbox with data entry here</p>
+	{% endfor %}
+		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
 </div>
 </div>
 </div>

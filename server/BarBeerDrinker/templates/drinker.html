@@ -1,7 +1,8 @@
 {% extends "navbar.html" %}
 {% block page %}
 	{{ super() }}
- <div class = "col-md-6 text-center">
+ <div class = "text-center">
+  <h1>Drinkers and their info</h1>
 	<ul class="list-group">	
 		{% for r in result %}
 			<li class="list-group-item"><a href={{ url_for('info_on_drinker', drinker = r['\ufeffName']) }}>{{r }}</li>
@@ -18,7 +19,7 @@
 <div id = "chart2">
 <div class = "container">
 	<b-row>
- <div class = "col-md-6 text-center">
+ <div class = "text-center">
   <center>
   </center>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
@@ -70,7 +71,7 @@
 <div id = "chart1">
 <div class = "container">
 <b-row>
- <div class = "col-md-6 text-center">
+ <div class = "text-center">
   <center>
     <h1>{{ title2 }}</h1>
   </center>

@@ -1,17 +1,25 @@
 {% extends "navbar.html" %}
 <!doctype html>
-<div class="container"
-<div class="jumbotron">
+<div class="container">
+<div class=text-right">
 	<head>
-		<title> This is the title of the Webpage!</title>
+		<title> Vegas BBDPLUS!</title>
 	</head>
 {{ super() }}
 {% block page %}
-		<h1>This is a heading.</h1>
-		<p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents. </p>
-		<p>
-			<a href = "https://www.youtube.com/watch?v=xri4ewvIgno" target="_blank" >If im not chillin, I prolly got my grill in.. yerrr!</a>
-		</p>
+	<body style = "text-align:center;">
+		<h1>Welcome to Las Vegas</h1>
+		<p>This is the home page for Tina Janulis and Gabriel Rodriguez' extended BarBeerDrinker schema.</p>
+		<h2>Things to note</h2>
+		<p>The navbar can be found at the top of every page you visit. The about page will tell you more about this project as well as our inspiration for some of the things you may find here.<br/>The pages dropdown menu will show you some premade pages for each major aspect to our project such as:</p>
+		<ul>	
+			<ul>Bars</ul>
+			<ul>Consumables (Drinks or Food Items)</ul>
+			<ul>Drinkers A.K.A. People</ul>
+			<ul>and Casinos</ul>
+		</ul>
+	</body>
+	
 </div>
 </div>
 {% endblock %}	

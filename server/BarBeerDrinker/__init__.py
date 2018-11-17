@@ -26,26 +26,91 @@ def get_casino():
 @app.route('/api/modify')
 def modify():
 	return render_template('modification.html')
-
+#result is of length one to have a for loop execute only once while being distinct to each request at the same page
 @app.route('/api/modify/add')
 def add():
-	return render_template('add.html')
-
-@app.route('/api/modify/add/<table>')
-def add_item():
-	return render_template('add.html')
+	return render_template('add.html',result = " ")
+@app.route('/api/modify/add/Bars')
+def add_Bar():
+	return render_template('add.html',result1=" ")
+@app.route('/api/modify/add/Bills')
+def add_Bills():
+	return render_template('add.html',result2=" ")
+@app.route('/api/modify/add/Consumables')
+def add_Consumables():
+	return render_template('add.html',result3 = " ")
+@app.route('/api/modify/add/Drinker')
+def add_Drinker():
+	return render_template('add.html',result4 = " ")
+@app.route('/api/modify/add/Frequents')
+def add_Frequents():
+	return render_template('add.html',result5 = " ")
+@app.route('/api/modify/add/Likes')
+def add_Likes():
+	return render_template('add.html',result6 = " ")
+@app.route('/api/modify/add/Pays')
+def add_Pays():
+	return render_template('add.html',result7 = " ")
+@app.route('/api/modify/add/Sells')
+def add_Sells():
+	return render_template('add.html',result8 = " ")
 
 @app.route('/api/modify/update')
 def update():
-	return render_template('update.html')
-
-@app.route('/api/modify/update/<table>')
-def update_item():
-	return render_template('update.html')
+	return render_template('update.html',result = " ")
+@app.route('/api/modify/update/Bars')
+def update_Bars():
+	return render_template('update.html',result1= " ")
+@app.route('/api/modify/update/Bills')
+def update_Bills():
+	return render_template('update.html',result2= " ")
+@app.route('/api/modify/update/Consumables')
+def update_Consumables():
+	return render_template('update.html',result3= " ")
+@app.route('/api/modify/update/Drinker')
+def update_Drinker():
+	return render_template('update.html',result4= " ")
+@app.route('/api/modify/update/Frequents')
+def update_Frequents():
+	return render_template('update.html',result5= " ")
+@app.route('/api/modify/update/Likes')
+def update_Likes():
+	return render_template('update.html',result6= " ")
+@app.route('/api/modify/update/Pays')
+def update_Pays():
+	return render_template('update.html',result7= " ")
+@app.route('/api/modify/update/Sells')
+def update_Sells():
+	return render_template('update.html',result8= " ")
 
 @app.route('/api/modify/delete')
 def delete():
-	return render_template('delete.html')
+	return render_template('delete.html',result = " ")
+@app.route('/api/modify/delete/Bars')
+def delete_Bars():
+	return render_template('delete.html',result1= " ")
+@app.route('/api/modify/delete/Bills')
+def delete_Bills():
+	return render_template('delete.html',result3= " ")
+@app.route('/api/modify/delete/Consumables')
+def delete_Consumables():
+	return render_template('delete.html',result3= " ")
+@app.route('/api/modify/delete/Drinker')
+def delete_Drinker():
+	return render_template('delete.html',result4= " ")
+@app.route('/api/modify/delete/Frequents')
+def delete_Frequents():
+	return render_template('delete.html',result5= " ")
+@app.route('/api/modify/delete/Likes')
+def delete_Likes():
+	return render_template('delete.html',result6= " ")
+@app.route('/api/modify/delete/Pays')
+def delete_Pays():
+	return render_template('delete.html',result7= " ")
+@app.route('/api/modify/delete/Sells')
+def delete_Sells():
+	return render_template('delete.html',result8= " ")
+
 
 @app.route('/api/modify/delete/<table>')
 def delete_item(table):
@@ -81,6 +146,10 @@ def get_consumables():
 @app.route('/api/consumable/<consumable>')
 def consumables_sold_most(consumable):
 	return render_template('beer.html', result1=database.consumable_sold_most(consumable), result2=database.drinkers_who_like(consumable))
+
+@app.route('/submission', methods=['GET', 'POST'])
+def submission():
+	return render_template('submission.html')
 
 @app.route('/')
 def hello_world():
