@@ -13,8 +13,8 @@ def info_on_drinker(drinker):
 	r2labels=[r['consumable'] for r in result2]
 	r2data=[r['amount_bought'] for r in result2]
 	result3=time_distribution_of_drinker(drinker)
-	r3labels=[r['c'] for r in result3]
-	r3data=[r['amount_bought'] for r in result3]
+	r3labels=[r['bar'] for r in result3]
+	r3data=[r['total'] for r in result3]
 	return render_template('drinker.html', result1=database.info_on_drinker(drinker), 
 		r2labels=r2labels, r2data=r2data, result2=result2, title1="Most ordered consumables", max1=max(r2data)+10,
 		result3=result3, )

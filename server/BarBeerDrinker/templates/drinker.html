@@ -79,7 +79,7 @@
       // bar chart data
       var barData = {
         labels : [
-        {% for r in r2labels %}
+        {% for r in r3labels %}
         "{{ r }}",
         {% endfor %}
         ],
@@ -88,7 +88,7 @@
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           data : [
-          {% for r in r2data %}
+          {% for r in r3data %}
           "{{ r }}",
           {% endfor %}
           ]
