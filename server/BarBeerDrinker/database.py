@@ -70,9 +70,20 @@ def info_on_drinker(drinker):
 		return None
 	return [dict(row) for row in rs]
 
-def get_frequents():
-	rs = con.execute("SELECT * FROM Frequents;")
+def beers_ordered_most(drinker):
+	beers_ordered_most = sql.text("SELECT b.consumable, count(b.consumable) AS amount_bought FROM Pays p LEFT JOIN Bills b ON p.transactionId=b.transactionID WHERE p.Name=:d ORDER BY amount_bought DESC LIMIT 5;")
+	rs=con.execute(beers_ordered_most, d = drinker)
+	if rs is None:
+		return None
 	return [dict(row) for row in rs]
+
+def time_distribution_of_drinker(drinker):
+	time_dist = sql.text("SELECT b.bar,b.total  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.Name=:d AND b.transactionID = p.transactionID GROUP BY b.bar ORDER BY total DESC;")
+	rs=con.execute(time_dist, d = drinker)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
 
 def get_likes():
 	rs = con.execute("SELECT * FROM Likes;")

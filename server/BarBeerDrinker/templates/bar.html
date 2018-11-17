@@ -5,62 +5,57 @@
 {{ super() }}
 <div class = "container">
  <div class = "col-md-6 text-center">
-		<ul class="list-group">
-			{% for r in result %}
-				<li class="list-group-item"><a href={{ url_for('top_spender', bar = r['Bar'] ) }}>{{r}} </li>
-			{% endfor %}
+  <ul class="list-group">
+   {% for r in result %}
+   <li class="list-group-item"><a href={{ url_for('top_spender', bar = r['Bar'] ) }}>{{r}} </li>
+     {% endfor %}
 
-             {% for r1 in result1 %}
-                <li class="list-group-item"> {{r1 }}</li>
-              {% endfor %}
-			{% for r2 in result2 %}
-				<li class="list-group-item"> {{r2}} </li>
-			{% endfor %}
-			{% for r3 in result3 %}
-				<li class="list-group-item"> {{r3}} </li>
-			{% endfor %}
-		</ul>
+     {% for r1 in result1 %}
+     <li class="list-group-item"> {{r1 }}</li>
+     {% endfor %}
+     {% for r2 in result2 %}
+     <li class="list-group-item"> {{r2}} </li>
+     {% endfor %}
+     {% for r3 in result3 %}
+     <li class="list-group-item"> {{r3}} </li>
+     {% endfor %}
+   </ul>
+ </div>
 </div>
-</div>
-//
+
+<div id = "chart1">
 <div class = "container">
  <div class = "col-md-6 text-center">
-<head>
-  <meta charset="utf-8" />
-  <title>{{ title }}</title>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
-</head>
-
-<body>
   <center>
-    <h1>{{ title }}</h1>
+    <h1>{{ title1 }}</h1>
   </center>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
   <center>
     <canvas id="chart" width="600" height="400"></canvas>
     <script>
       // bar chart data
       var barData = {
         labels : [
-          {% for r1 in result1 %}
-           "{{ r1['Name'] }}",
-          {% endfor %}
-	],
+        {% for r in r1labels %}
+        "{{ r }}",
+        {% endfor %}
+        ],
         datasets : [{
           fillColor: "rgba(151,187,205,0.2)",
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           data : [
-            {% for r1 in result1 %}
-               "{{ r1['total'] }}",
-              {% endfor %}
-	    ]
-          }
+          {% for r in r1data %}
+          "{{ r }}",
+          {% endfor %}
+          ]
+        }
         ]
       }
      // get bar chart canvas
      var mychart = document.getElementById("chart").getContext("2d");
-       steps = 10
-       max = {{max}}
+     steps = 10
+     max = "{{max1}}"
      // draw bar chart
      new Chart(mychart).Bar(barData, {
        scaleOverride: true,
@@ -71,13 +66,114 @@
        scaleShowGridLines : true,
        barShowStroke : true,
        scaleShowLabels: true
-       }
+     }
      );
-    </script>
+   </script>
+   </center>
+ </div>
+</div>
+</div>
+
+<div id = "chart2">
+<div class = "container">
+ <div class = "col-md-6 text-center" >
+  <center>
+    <h1>{{ title2 }}</h1>
   </center>
-</body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <center>
+    <canvas id="chart2" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData2 = {
+        labels : [
+        {% for r in r2labels %}
+        "{{ r }}",
+        {% endfor %}
+        ],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+          {% for r in r2data %}
+          "{{ r }}",
+          {% endfor %}
+          ]
+        }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+     steps = 10
+     max = "{{max1}}"
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+     }
+     );
+   </script>
+ </center>
 </div>
+ </div>
 </div>
+<div id = "chart3">
+<div class = "container">
+ <div class = "col-md-6 text-center">
+  <center>
+    <h1>{{ title3 }}</h1>
+  </center>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <center>
+    <canvas id="chart3" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData3 = {
+        labels : [
+        {% for r in r3labels %}
+        "{{ r }}",
+        {% endfor %}
+        ],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+          {% for r in r3data %}
+          "{{ r }}",
+          {% endfor %}
+          ]
+        }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+     steps = 10
+     max = "{{max3}}"
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+     }
+     );
+   </script>
+ </center>
+ </div>
+</div>
+
 {% endblock page %}
 
 

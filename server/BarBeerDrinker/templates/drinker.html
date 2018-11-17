@@ -4,11 +4,117 @@
  <div class = "col-md-6 text-center">
 	<ul class="list-group">	
 		{% for r in result %}
-			<li class="list-group-item"><a href={{ url_for('info_on_drinker', drinker = r['Name']) }}>{{r }}</li>				
+			<li class="list-group-item"><a href={{ url_for('info_on_drinker', drinker = r['\ufeffName']) }}>{{r }}</li>				
 		{% endfor %}
 		{% for r1 in result1 %}
 			<li class="list-group-item">{{r1}}</li>
 		{% endfor %}
+		{% for r2 in result2 %}
+			<li class="list-group-item">{{r2}}</li>
+		{% endfor %}
 	</ul>	
 </div>
+
+<div id = "chart1">
+<div class = "container">
+ <div class = "col-md-6 text-center">
+  <center>
+    <h1>{{ title1 }}</h1>
+  </center>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <center>
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+        {% for r in r2labels %}
+        "{{ r }}",
+        {% endfor %}
+        ],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+          {% for r in r2data %}
+          "{{ r }}",
+          {% endfor %}
+          ]
+        }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+     steps = 10
+     max = "{{max1}}"
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+     }
+     );
+   </script>
+   </center>
+ </div>
+</div>
+</div>
+
+<div id = "chart1">
+<div class = "container">
+ <div class = "col-md-6 text-center">
+  <center>
+    <h1>{{ title2 }}</h1>
+  </center>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  <center>
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+        {% for r in r2labels %}
+        "{{ r }}",
+        {% endfor %}
+        ],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+          {% for r in r2data %}
+          "{{ r }}",
+          {% endfor %}
+          ]
+        }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+     steps = 10
+     max = "{{max1}}"
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+     }
+     );
+   </script>
+   </center>
+ </div>
+</div>
+</div>
+
 {% endblock %}
