@@ -3,8 +3,12 @@
 {{ super() }}
  <div class = "col-md-6 text-center">
 	<ul class="list-group">	
+		<h1>Bars at {{ text_title }} casino</h1>
 		{% for r in result %}
-			<li class="list-group-item"><a href={{ url_for('get_casino') }}>{{r}}</li>
+			<li class="list-group-item"><a href={{ url_for('get_casino_info', casino=r['Casino']) }}>{{r}}</li>
+		{% endfor %}
+		{% for r1 in result1 %}
+			<li class="list-group-item">{{r1}}</li>
 		{% endfor %}
 	</ul>
 </div>
