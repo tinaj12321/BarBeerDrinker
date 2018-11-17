@@ -16,6 +16,11 @@ def get_casinos():
 	rs = con.execute("SELECT DISTINCT Casino, City, Address, City FROM Bars;")
 	return [dict(row) for row in rs]
 
+def get_casino_bars(casino):
+	get_bars = sql.text("SELECT Bar FROM Bars WHERE Casino=:c;")
+	rs = con.execute(get_bars, c=casino)
+	return [dict(row) for row in rs]
+	
 def top_spenders(bar):
 	top_spender = sql.text("SELECT p.`Name`,b.total, b.transactionID  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.bar=:b AND b.transactionID = p.transactionID GROUP BY p.`Name` ORDER BY total DESC LIMIT 5;")
 	rs = con.execute(top_spender, b=bar)
