@@ -104,23 +104,36 @@
 	{% for r4 in result4 %}
 		<h1>Adding to Drinker</h1>
 		<form action="/submission" method="post">
-		<br>
-		<input type="submit" value="Submit">
-		<input type = "reset">
+			Name:<br>
+			<input type="text" name="name" required="required"><br>
+			Phone Number:<br>
+			<input type="text" name="phone_num" required="required" pattern="[0-9]"" minlength="10" maxlength="10"><br>
+			City:<br>
+			<input type="text" name="city" required="required"><br>
+			Address:<br>
+			<input type="text" name="Address" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
 		</form>
 		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Adding to Frequents</h1>
 		<form action="/submission" method="post">
-		<br>
-		<input type="submit" value="Submit">
-		<input type = "reset">
+			Drinkner:<br>
+			<input type="text" name="Drinker" required="required"><br>
+			Bar:<br>
+			<input type="text" name="Bar" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
 		</form>
 		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Adding to Likes</h1>
+		
 		<form action="/submission" method="post">
 		<br>
 		<input type="submit" value="Submit">
