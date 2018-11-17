@@ -85,7 +85,7 @@ def spending_of_drinker(drinker):
 	return [dict(row) for row in rs]
 
 def monthly_breakdown(drinker):
-	monthly_breakdown = sql.text("SELECT REPLACE();")
+	monthly_breakdown = sql.text("SELECT IF((LEFT(b.month_and_day,2) > 10), LEFT(b.month_and_day,2) AS month, CONCAT(' ',CONCAT('0',LEFT(b.month_and_day,2)) AS month), IF((RIGHT(b.month_and_day,2) > 10)), CONCAT(' ',(RIGHT(b.month_and_day,2))) AS day, CONCAT(' ',(CONCAT('0',RIGHT(b.month_and_day,2)))) AS day), CONCAT(2018,(CONCAT(month,day))) AS prelim_string, REPLACE(prelim_string,' ','/') AS date_format, DATEPART(month, date_format) AS formatted_month, b.total FROM Bills b, Pays p WHERE p.bar=b.bar AND p.Name=:d AND b.transactionID = p.transactionID GROUP BY b.bar ORDER BY total DESC;")
 	rs=con.execute(monthly_breakdown, d = drinker)
 	if rs is None:
 		return None
