@@ -68,10 +68,10 @@
 			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
 			Monday -> 1, Tuesday ->2 etc...<br>
 			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
-			<input type="text" name="day" required="required" pattern="[1-7]"><input type="text" name="hour_occur" required="required" pattern="[0-23]"><input type="min_occur" name="Bar" required="required" pattern="[0-59]"><br>
+			<input type="text" name="day" required="required"><input type="text" name="hour_occur" required="required"><input type="text" name="min_occur" required="required" ><br>
 			Month and Day:<br>
 			Ex: October 31st --> 10|31<br>
-			<input type="text" name="month" required="required" pattern="[1-12]"><input type="text" name="day" required="required" pattern="[1-31]"><br>
+			<input type="text" name="month" required="required"><input type="text" name="day" required="required"><br>
 			TransactionID:<br>
 			<input type="text" name="TransID" required="required"><br>
 			Tip:<br>
@@ -82,6 +82,7 @@
 			<input type="number" name="total" required="required"><br>
 			<br>
 			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
+			Remeber to add to the Pays table as well for this information to pass quality checks.<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
 
@@ -121,7 +122,7 @@
 	{% for r5 in result5 %}
 		<h1>Adding to Frequents</h1>
 		<form action="/submission" method="post">
-			Drinkner:<br>
+			Drinker:<br>
 			<input type="text" name="Drinker" required="required"><br>
 			Bar:<br>
 			<input type="text" name="Bar" required="required"><br>
@@ -133,8 +134,11 @@
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Adding to Likes</h1>
-		
 		<form action="/submission" method="post">
+			Person:<br>
+			<input type="text" name="Person" required="required"><br>
+			Consumable:<br>
+			<input type="text" name="Consumable" required="required"><br>
 		<br>
 		<input type="submit" value="Submit">
 		<input type = "reset">
@@ -144,18 +148,33 @@
 	{% for r7 in result7 %}
 		<h1>Adding to Pays</h1>
 		<form action="/submission" method="post">
-		<br>
-		<input type="submit" value="Submit">
-		<input type = "reset">
+			TransactionID:<br>
+			<input type="text" name="TransactionId" required="required"><br>
+			Name:<br>
+			<input type="text" name="Name" required="required"><br>
+			Bar:<br>
+			<input type="text" name="Bar" required="required"><br>
+			<br>
+			Remeber to add to the bills table as well for this information to pass quality checks.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
 		</form>
 		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
 		{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Adding to Sells</h1>
 		<form action="/submission" method="post">
-		<br>
-		<input type="submit" value="Submit">
-		<input type = "reset">
+			Bar Name:<br>
+			<input type="text" name="Bar" required="required"><br>
+			Consu,able:<br> 
+			<input type="text" name="Consumable" required="required"><br>
+			Price:<br>
+			<input type="number" name="price" required="required"><br>
+			<br>
+			Remeber that if you want to add something new that can be sold at different bars, the price must be consistent with the price constraints..<br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
 		</form>
 		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
 		{% endfor %}
