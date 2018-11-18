@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/api/drinker')
 def get_drinkers():
-        return render_template('drinker.html', result=database.get_drinkers())
+	return render_template('drinker.html', result=database.get_drinkers())
 
 @app.route('/api/drinker/<drinker>')
 def info_on_drinker(drinker):
@@ -89,23 +89,23 @@ def add_Bar():
 
 @app.route('/api/modify/add/Bills', methods=['GET','POST'])
 def add_Bills():
-	if request.method='POST':
+	if request.method=='POST':
 		bar=request.form['Bar']
 		consumable=request.form['Consumable']
-		day_of_week=str(request.form['Day'])
+		day_of_week=str(request.form['day'])
 		hour_occur=str(request.form['hour_occur'])
 		min_occur=str(request.form['min_occur'])
 		month=str(request.form['month'])
 		day=str(request.form['day'])
 		transactionID=request.form['TransID']
-		subtotal= request.form['subtotal']
-		tip=request.form['tip']
-		total=request.form['total']
-		tax_subtotal=(0.7*subtotal)+subtotal
+		subtotal= float(request.form['subtotal'])
+		tip=float(request.form['tip'])
+		total=float(request.form['total'])
 		find_bill=database.find_bill(consumable,transactionID)
-		trans_time=day_of_week+" "hour_occur+min_occur
-		trans_day=day+month
-		if total <> tax_subtotal+tip and len(find_bill) > 0:
+		tax_total=float(subtotal+0.07*subtotal)
+		trans_time = day_of_week+" "+hour_occur + min_occur
+		trans_day = day+month
+		if len(find_bill) > 0 or total != tax_total+tip:
 			return render_template('error.html')
 		else:
 			insert_bill=database.insert_bill(bar, consumable, trans_time, trans_day, transactionID, subtotal, tip, total)
@@ -116,25 +116,28 @@ def add_Bills():
 
 @app.route('/api/modify/add/Consumables', methods=['GET','POST'])
 def add_Consumables():
-	if request.method='POST':
+	if request.method=='POST':
 		consumable=request.form['consumable']
 		manufacturer=request.form['manufacturer']
 		find_consumable=database.find_consumable(consumable,manufacturer)
 		if len(find_consumable) > 0:
 			return render_template('error.html')
 		else:
+			consumable=request.form['consumable']
+			manufacturer=request.form['manufacturer']
 			insert_consumable=database.insert_consumable(consumable,manufacturer)
-			return render_template('submission.html', insert_consumable=insert_consumable)
+			return render_template('submission.html', result=insert_consumable, consumable=consumable, manufacturer=manufacturer)
 	else:
 		return render_template('add.html',result3 = " ")
 
 @app.route('/api/modify/add/Drinker', methods=['GET', 'POST'])
 def add_Drinker():
-	if request.method='POST':
+	if request.method=='POST':
 		name=request.form['name']
 		phone_num=request.form['phone_num']
 		city=request.form['city']
 		addr=request.form['Address']
+		find_drinker=database.find_drinker(name,phone_num,addr,city)
 		if len(find_drinker) > 0:
 			return render_template('error.html')
 		else:
@@ -145,7 +148,7 @@ def add_Drinker():
 
 @app.route('/api/modify/add/Frequents', methods=['GET', 'POST'])
 def add_Frequents():
-	if request.method='POST':
+	if request.method=='POST':
 		drinker=request.form['Drinker']
 		bar=request.form['Bar']
 		find_frequents=database.find_frequents(drinker,bar)
@@ -160,9 +163,10 @@ def add_Frequents():
 
 @app.route('/api/modify/add/Likes', methods=['GET', 'POST'])
 def add_Likes():
-	if request.method='POST':
+	if request.method=='POST':
 		drinker=request.form['Person']
 		consumable=request.form['Consumable']
+		find_likes=database.find_likes(drinker,consumable)
 		if len(find_likes) > 0:
 			return render_template('error.html')
 		else:
@@ -174,7 +178,7 @@ def add_Likes():
 
 @app.route('/api/modify/add/Pays', methods=['GET', 'POST'])
 def add_Pays():
-	if request.method='POST':
+	if request.method=='POST':
 		transID=request.form['TransactionId']
 		drinker=request.form['Name']
 		bar=request.form['Bar']
@@ -190,7 +194,7 @@ def add_Pays():
 
 @app.route('/api/modify/add/Sells', methods=['GET', 'POST'])
 def add_Sells():
-if request.method='POST':
+	if request.method=='POST':
 		bar=request.form['Bar']
 		consumable=request.form['Consumable']
 		price=request.form['price']
@@ -275,7 +279,7 @@ def get_casino_info(casino):
 def get_bars():
 	return render_template('bar.html', result=database.get_bars())
 
-@app.route('/api/bar/<bar>', methods=['GET'])
+@app.route('/api/bar/<bar>')
 def top_spender(bar):
 	result1=database.top_spenders(bar)
 	r1labels=[r['Name'] for r in result1]
@@ -294,7 +298,7 @@ def top_spender(bar):
 def get_consumables():
 	return render_template('beer.html', result=database.get_consumables())
 
-@app.route('/api/consumable/<consumable>' methods=['GET'])
+@app.route('/api/consumable/<consumable>', methods=['GET'])
 def consumables_sold_most(consumable):
 	return render_template('beer.html', text_title=consumable, result1=database.consumable_sold_most(consumable), result2=database.drinkers_who_like(consumable))
 

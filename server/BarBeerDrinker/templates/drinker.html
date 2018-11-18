@@ -6,7 +6,7 @@
   <h2>{{ text_title }}</h2>
 	<ul class="list-group">	
 		{% for r in result %}
-			<li class="list-group-item"><a href={{ url_for('info_on_drinker', drinker = r['\ufeffName']) }}>{{r }}</li>
+			<li class="list-group-item"><a href="{{ url_for('info_on_drinker', drinker=r.values()[0])}}">{{r }}</li>
 		{% endfor %}
 		{% for r1 in result1 %}
 			<li class="list-group-item">{{r1}}</li>

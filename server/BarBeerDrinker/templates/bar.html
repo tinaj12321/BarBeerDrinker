@@ -8,23 +8,23 @@
   <ul class="list-group">
     <h1>Top 5 Spenders, Consumables, and Manufacturers</h1>
     <h2>{{ text_title }}</h2>
-   {% for r in result %}
-   <li class="list-group-item"><a href={{ url_for('top_spender', bar = r['bar'] ) }}>{{r}} </li>
-     {% endfor %}
+    {% for r in result %}
+        <li class="list-group-item"><a href="{{ url_for('top_spender', bar= r['bar']) }}">{{r}}</li>
+    {% endfor %}
 
      {% for r1 in result1 %}
      <li class="list-group-item"> {{r1 }}</li>
      {% endfor %}
      {% for r2 in result2 %}
-     {% if 'Lager' in r2['consumable'] or 'Beer' in r2['consumable'] or 'Stout' in r2['consumable'] or 'Ale' in r2['consumable'] or 'Beer' in r2['consumable'] or 'Cider' in r2['consumable'] or 'IPA' in r2['consumable'] or 'Dark' in r2['consumable'] %}
-      <li class="list-group-item"> 🍺{{r2}}🍺 </li>
-    {% elif 'Fries' in r2['consumable'] %}
-    <li class="list-group-item"> 🍟{{r2}}🍟 </li>
-    {% elif 'Hot dog' in r2['consumable'] %}
-    <li class="list-group-item"> 🌭{{r2}}🌭 </li>
-    {% else %}
-    <li class="list-group-item"> {{r2}} </li>
-     {% endif %}
+           {% if 'Lager' in r2['consumable'] or 'Beer' in r2['consumable'] or 'Stout' in r2['consumable'] or 'Ale' in r2['consumable'] or 'Beer' in r2['consumable'] or 'Cider' in r2['consumable'] or 'IPA' in r2['consumable'] or 'Dark' in r2['consumable'] %}
+            <li class="list-group-item"> 🍺{{r2}}🍺 </li>
+          {% elif 'Fries' in r2['consumable'] %}
+          <li class="list-group-item"> 🍟{{r2}}🍟 </li>
+          {% elif 'Hot dog' in r2['consumable'] %}
+          <li class="list-group-item"> 🌭{{r2}}🌭 </li>
+          {% else %}
+          <li class="list-group-item"> {{r2}} </li>
+           {% endif %}
      {% endfor %}
      {% for r3 in result3 %}
      <li class="list-group-item"> {{r3}} </li>

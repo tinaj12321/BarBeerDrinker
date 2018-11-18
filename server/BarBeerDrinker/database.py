@@ -22,7 +22,7 @@ def get_casino_bars(casino):
 	return [dict(row) for row in rs]
 	
 def top_spenders(bar):
-	top_spender = sql.text("SELECT p.`Name`,b.total, b.transactionID  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.bar=:b AND b.transactionID = p.transactionID GROUP BY p.`Name` ORDER BY total DESC LIMIT 5;")
+	top_spender = sql.text("SELECT p.`Name`,b.total, b.transactionID  FROM Bills b, Pays p WHERE p.Bar=b.bar AND p.Bar=:b AND b.transactionID = p.transactionID GROUP BY p.`Name` ORDER BY total DESC LIMIT 5;")
 	rs = con.execute(top_spender, b=bar)
 	if rs is None:
 		return None
@@ -49,14 +49,6 @@ def find_bar(bar, casino, address, city, hours):
 		return None
 	return [dict(row) for row in rs]
 
-
-"""def find_bar_helper(bar):
-	find_bar=sql.text("SELECT Bar, Casino, Address, City FROM Bars WHERE Bar=:b;")
-	rs = con.execute(find_bar, b=bar)
-	if rs is None:
-		return None
-	return [dict(row) for row in rs]"""
-
 def find_bill(consumable, transactionID):
 	find_bill=sql.text("SELECT consumable, transactionID FROM Bills b WHERE consumable=:c and transactionID=:t")
 	rs=con.execute(find_bill, c=consumable, t=transactionID)
@@ -64,9 +56,9 @@ def find_bill(consumable, transactionID):
 		return None
 	return [dict(row) for row in rs]
 
-def insert_bill(bar, consumable, trans_time, trans_day, transID, subtotal, tip, total)
+def insert_bill(bar, consumable, trans_time, trans_day, transID, subtotal, tip, total):
 	insert_bill=sql.text("INSERT INTO Bills (Bar, Consumable, time_occurred, month_and_day, transactionId, subtotal, tip, total) VALUES(Bar=:b, Consumable=:c, time_occurred=:ti, month_and_day=:m, transactionId=:trans, subtotal=:sub, tip=:tip, total=:total);")
-	rs=con.execute(insert_bill, b=consumable, ti=trans_time, m=trans_day, trans=transID, sub=subtotal, tip=tip, total=total)
+	rs=con.execute(insert_bill, b=bar, c=consumable, ti=trans_time, m=trans_day, trans=transID, sub=subtotal, tip=tip, total=total)
 
 def insert_bar(bar, casino, address, city, hours):
 	insert_bar=sql.text("INSERT INTO Bars (Bar, Casino, Address, City, Hours) VALUES(bar=:b, casino=:casino, address=:a, city=:c, hours=:h);")
@@ -81,12 +73,12 @@ def get_consumables():
 	return [dict(row) for row in rs]
 
 def find_consumable(consumable, manufacturer):
-	find_consumable=sql.text("SELECT consumable, manufacturer FROM Consumables WHERE consumable:=c AND manufacturer:=m;")
+	find_consumable=sql.text("SELECT consumable, manufacturer FROM Consumables WHERE consumable=:c AND manufacturer=:m;")
 	rs=con.execute(find_consumable, c=consumable, m=manufacturer)
 	return [dict(row) for row in rs]
 
-def insert_consumable(comsumable, manufacturer):
-	insert_consumable=sql.text("INSERT INTO Comsumables(consumable, manufacturer) VALUES(consumable=:c, manufacturer=:m)")
+def insert_consumable(consumable, manufacturer):
+	insert_consumable=sql.text("INSERT INTO Consumables(Consumable, Manufacturer) VALUES(:c, :m);")
 	rs=con.execute(insert_consumable, c=consumable, m=manufacturer)
 
 def consumable_sold_most(consumable):
@@ -136,14 +128,14 @@ def monthly_breakdown(drinker):
 	return [dict(row) for row in rs]
 
 def find_drinker(drinker, phone, addr, city):
-	find_drinker=sql.text("SELECT name, phone_num, address, city FROM Drinker WHERE name:=n AND phone_num=:p AND address=:a AND city=:c;")
-	rs=con.execute(find_drinker, n=drinker, p=phone, a=addr, c=dity)
+	find_drinker=sql.text("SELECT `Name`, `Phone Number`, Address, City FROM Drinker WHERE `Name`=:n AND `Phone Number`=:p AND Address=:a AND City=:c;")
+	rs=con.execute(find_drinker, n=drinker, p=phone, a=addr, c=city)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
 def insert_drinker(drinker,phone,addr,city):
-	insert_drinker=sql.text("INSERT INTO Drinker(name, phone_num, address, city) VALUES name:=n, phone_num=:p, addreee=:a, city=:c;")
+	insert_drinker=sql.text("INSERT INTO Drinker(`Name`, `Phone Number`, Address, City) VALUES (:n, :p, :a,:c);")
 	rs=con.execute(insert_drinker, n=drinker, p=phone, a=addr, c=city)
 
 def get_likes():
@@ -158,7 +150,7 @@ def find_likes(drinker, consumable):
 	return [dict(row) for row in rs]
 
 def insert_likes(drinker, consumable):
-	insert_likes=sql.text("INSERT INTO Likes(Person, Consumable) VALUES Person=:d, Consumable=:c;")
+	insert_likes=sql.text("INSERT INTO Likes(Person, Consumable) VALUES :d, :c;")
 	rs=con.execute(insert_frequents, d=drinker, c=consumable)
 
 def get_pays():
@@ -173,7 +165,7 @@ def find_pays(transID, drinker, bar):
 	return [dict(row) for row in rs]
 
 def insert_pays(transID, drinker, bar):
-	insert_pays=sql.text("INSERT INTO Pays(TransactionId, Name, Bar) VALUES (TransactionId=:t, Name=:n, Bar=:b);")
+	insert_pays=sql.text("INSERT INTO Pays(TransactionId, Name, Bar) VALUES (:t, :n, :b);")
 	rs=con.execute(insert_frequents, t=transID, n=drinker, b=bar)
 
 def get_sells():
@@ -185,7 +177,7 @@ def find_sells(bar, consumable, price):
 	rs=con.execute(find_sells, b=bar, c=consumable, p=price)
 
 def insert_sells(bar,consumable,price):
-	insert_sells=sql.text("INSERT INTO Sells(Bar,Consumable,price) VALUES(Bar=:b,Consumable=:c,price=:p);")
+	insert_sells=sql.text("INSERT INTO Sells(Bar,Consumable,price) VALUES(:b, :c, :p);")
 
 
 def find_frequents(drinker,bar):
@@ -196,7 +188,7 @@ def find_frequents(drinker,bar):
 	return [dict(row) for row in rs]
 
 def insert_frequents(drinker,bar):
-	insert_frequents=sql.text("INSERT INTO Frequents(Drinker, Bar) VALUES drinker=:d, bar=:b;")
+	insert_frequents=sql.text("INSERT INTO Frequents(Drinker, Bar) VALUES :d, :b;")
 	rs=con.execute(insert_frequents, d=drinker, b=bar)
 
 

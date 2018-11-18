@@ -91,7 +91,7 @@
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Adding to Consumables</h1>
-		<form action="{{ url_for('add_Consumables')}}" method="post">
+		<form action="{{ url_for('add_Consumables')}}" method="POST">
 			Consumable:<br>
 			<input type="text" name="consumable" required="required"><br>
 			Manufacturer:<br>
