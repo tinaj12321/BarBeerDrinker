@@ -130,6 +130,7 @@ def add_Consumables():
 	else:
 		return render_template('add.html',result3 = " ")
 
+
 @app.route('/api/modify/add/Drinker', methods=['GET', 'POST'])
 def add_Drinker():
 	if request.method=='POST':
@@ -152,7 +153,8 @@ def add_Frequents():
 		drinker=request.form['Drinker']
 		bar=request.form['Bar']
 		find_frequents=database.find_frequents(drinker,bar)
-		if len(find_frequents) > 0:
+		find_drinker_helper=database.find_drinker_helper(drinker)
+		if len(find_frequents) > 0 and len(find_drinker_helper) == 0:
 			return render_template('error.html')
 		else:
 			insert_frequents=database.insert_frequents(drinker,bar)
@@ -167,7 +169,8 @@ def add_Likes():
 		drinker=request.form['Person']
 		consumable=request.form['Consumable']
 		find_likes=database.find_likes(drinker,consumable)
-		if len(find_likes) > 0:
+		find_drinker_helper=database.find_drinker_helper(drinker)
+		if len(find_likes) > 0 and len(find_drinker_helper)==0 and len(find_consumable_helper)==0:
 			return render_template('error.html')
 		else:
 			insert_frequents=database.insert_frequents(drinker,consumable)
@@ -183,7 +186,8 @@ def add_Pays():
 		drinker=request.form['Name']
 		bar=request.form['Bar']
 		find_pays=database.find_pays(transID,drinker,bar)
-		if len(find_pays) > 0:
+		find_bar_helper=database.find_bar_helper(bar)
+		if len(find_pays) > 0 and len(find_bar_helper) == 0 and len(find_drinker_helper) == 0:
 			return render_template('error.html')
 		else:
 			insert_pays=database.insert_pays(transID,drinker,bar)
@@ -199,7 +203,8 @@ def add_Sells():
 		consumable=request.form['Consumable']
 		price=request.form['price']
 		find_sells=database.find_sells(bar,consumable,price)
-		if len(find_sells) > 0:
+		find_bar_helper=database.find_bar_helper(bar)
+		if len(find_sells) > 0 and len(find_bar_helper)==0 and len(find_consumable_helper)==0:
 			return render_template('error.html')
 		else:
 			insert_sells=database.insert_pays(bar,consumable,price)

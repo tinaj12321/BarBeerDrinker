@@ -49,6 +49,13 @@ def find_bar(bar, casino, address, city, hours):
 		return None
 	return [dict(row) for row in rs]
 
+def find_bar_helper(bar)
+	find_bar_helper=sql.text("SELECT Bar FROM Bar b WHERE Bar=:b")
+	rs = con.execute(find_bar_helper, b=bar)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
 def find_bill(consumable, transactionID):
 	find_bill=sql.text("SELECT consumable, transactionID FROM Bills b WHERE consumable=:c and transactionID=:t")
 	rs=con.execute(find_bill, c=consumable, t=transactionID)
@@ -75,6 +82,15 @@ def get_consumables():
 def find_consumable(consumable, manufacturer):
 	find_consumable=sql.text("SELECT consumable, manufacturer FROM Consumables WHERE consumable=:c AND manufacturer=:m;")
 	rs=con.execute(find_consumable, c=consumable, m=manufacturer)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
+def find_consumable_helper(consumable):
+	find_consumable_helper=sql.text("SELECT consumable FROM Consumables WHERE consumable=:c;")
+	rs=con.execute(find_consumable_helper, c=consumable)
+	if rs is None:
+		return None
 	return [dict(row) for row in rs]
 
 def insert_consumable(consumable, manufacturer):
@@ -134,6 +150,13 @@ def find_drinker(drinker, phone, addr, city):
 		return None
 	return [dict(row) for row in rs]
 
+def find_drinker_helper(drinker):
+	find_drinker_helper=sql.text("SELECT `Name` FROM Drinker WHERE `Name`=:n;")
+	rs=con.execute(find_drinker_helper, n=drinker)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
 def insert_drinker(drinker,phone,addr,city):
 	insert_drinker=sql.text("INSERT INTO Drinker(`Name`, `Phone Number`, Address, City) VALUES (:n, :p, :a,:c);")
 	rs=con.execute(insert_drinker, n=drinker, p=phone, a=addr, c=city)
@@ -175,10 +198,13 @@ def get_sells():
 def find_sells(bar, consumable, price):
 	find_sells=sql.text("SELECT Bar,Consumable,price WHERE Bar=:b AND Consumable=:c AND price=:p ;")
 	rs=con.execute(find_sells, b=bar, c=consumable, p=price)
+	if rs is None:
+		return None
+	return [dict(row)]
 
 def insert_sells(bar,consumable,price):
 	insert_sells=sql.text("INSERT INTO Sells(Bar,Consumable,price) VALUES(:b, :c, :p);")
-
+	rs=con.execute(insert_sells, b=bar, c=consumable, p=price)
 
 def find_frequents(drinker,bar):
 	find_frequents=sql.text("SELECT Drinker, Bar FROM Frequents WHERE Drinker=:d AND Bar=:b;")
