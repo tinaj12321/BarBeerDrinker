@@ -77,42 +77,134 @@ def add_Bar():
 
 		hours=m_hour_open+m_Min_open+" "+m_hour_closed+m_Min_closed+" "+tu_hour_open+tu_Min_open+" "+tu_hour_closed+tu_Min_closed+" "+w_hour_open+w_Min_open+" "+w_hour_closed+w_Min_closed+" "+th_hour_open+th_Min_open+" "+th_hour_closed+th_Min_closed+" "+f_hour_open+f_Min_open+" "+f_hour_closed+f_Min_closed+" "+sa_hour_open+sa_Min_open+" "+sa_hour_closed+sa_Min_closed+" "+su_hour_open+su_Min_open+" "+su_hour_closed+su_Min_closed
 
-		find_bar=database.find_bar_helper(bar)
+		find_bar=database.find_bar(bar, casino, address, city, hours)
 
 		if len(find_bar) > 0:
 			return render_template('error.html')
 		else:
 			insert_bar=database.insert_bar(bar, casino, address, city, hours)
-			return bar
-			return casino
-			return address
-			return city
-			return hours
 			return render_template('submission.html', insert_bar=insert_bar)
 	else:
 		return render_template('add.html',result1=" ")
 
-@app.route('/api/modify/add/Bills')
+@app.route('/api/modify/add/Bills', methods=['GET','POST'])
 def add_Bills():
-	return render_template('add.html',result2=" ")
-@app.route('/api/modify/add/Consumables')
+	if request.method='POST':
+		bar=request.form['Bar']
+		consumable=request.form['Consumable']
+		day_of_week=str(request.form['Day'])
+		hour_occur=str(request.form['hour_occur'])
+		min_occur=str(request.form['min_occur'])
+		month=str(request.form['month'])
+		day=str(request.form['day'])
+		transactionID=request.form['TransID']
+		subtotal= request.form['subtotal']
+		tip=request.form['tip']
+		total=request.form['total']
+		tax_subtotal=(0.7*subtotal)+subtotal
+		find_bill=database.find_bill(consumable,transactionID)
+		trans_time=day_of_week+" "hour_occur+min_occur
+		trans_day=day+month
+		if total <> tax_subtotal+tip and len(find_bill) > 0:
+			return render_template('error.html')
+		else:
+			insert_bill=database.insert_bill(bar, consumable, trans_time, trans_day, transactionID, subtotal, tip, total)
+			return render_template('submission.html', insert_bill=insert_bill)
+
+	else:
+		return render_template('add.html',result2=" ")
+
+@app.route('/api/modify/add/Consumables', methods=['GET','POST'])
 def add_Consumables():
-	return render_template('add.html',result3 = " ")
-@app.route('/api/modify/add/Drinker')
+	if request.method='POST':
+		consumable=request.form['consumable']
+		manufacturer=request.form['manufacturer']
+		find_consumable=database.find_consumable(consumable,manufacturer)
+		if len(find_consumable) > 0:
+			return render_template('error.html')
+		else:
+			insert_consumable=database.insert_consumable(consumable,manufacturer)
+			return render_template('submission.html', insert_consumable=insert_consumable)
+	else:
+		return render_template('add.html',result3 = " ")
+
+@app.route('/api/modify/add/Drinker', methods=['GET', 'POST'])
 def add_Drinker():
-	return render_template('add.html',result4 = " ")
-@app.route('/api/modify/add/Frequents')
+	if request.method='POST':
+		name=request.form['name']
+		phone_num=request.form['phone_num']
+		city=request.form['city']
+		addr=request.form['Address']
+		if len(find_drinker) > 0:
+			return render_template('error.html')
+		else:
+			insert_drinker=database.insert_drinker(name, phone_num, addr, city)
+			return render_template('submission.html', insert_drinker=insert_drinker)
+	else:
+		return render_template('add.html',result4 = " ")
+
+@app.route('/api/modify/add/Frequents', methods=['GET', 'POST'])
 def add_Frequents():
-	return render_template('add.html',result5 = " ")
-@app.route('/api/modify/add/Likes')
+	if request.method='POST':
+		drinker=request.form['Drinker']
+		bar=request.form['Bar']
+		find_frequents=database.find_frequents(drinker,bar)
+		if len(find_frequents) > 0:
+			return render_template('error.html')
+		else:
+			insert_frequents=database.insert_frequents(drinker,bar)
+			return render_template('submission.html', insert_frequents=insert_frequents)
+	else:	
+		return render_template('add.html',result5 = " ")
+
+
+@app.route('/api/modify/add/Likes', methods=['GET', 'POST'])
 def add_Likes():
-	return render_template('add.html',result6 = " ")
-@app.route('/api/modify/add/Pays')
+	if request.method='POST':
+		drinker=request.form['Person']
+		consumable=request.form['Consumable']
+		if len(find_likes) > 0:
+			return render_template('error.html')
+		else:
+			insert_frequents=database.insert_frequents(drinker,consumable)
+			return render_template('submission.html', insert_likes=insert_likes)
+	else:	
+		return render_template('add.html',result6 = " ")
+
+
+@app.route('/api/modify/add/Pays', methods=['GET', 'POST'])
 def add_Pays():
-	return render_template('add.html',result7 = " ")
-@app.route('/api/modify/add/Sells')
+	if request.method='POST':
+		transID=request.form['TransactionId']
+		drinker=request.form['Name']
+		bar=request.form['Bar']
+		find_pays=database.find_pays(transID,drinker,bar)
+		if len(find_pays) > 0:
+			return render_template('error.html')
+		else:
+			insert_pays=database.insert_pays(transID,drinker,bar)
+			return render_template('submission.html', insert_pays=insert_pays)
+	else:	
+		return render_template('add.html',result7 = " ")
+
+
+@app.route('/api/modify/add/Sells', methods=['GET', 'POST'])
 def add_Sells():
-	return render_template('add.html',result8 = " ")
+if request.method='POST':
+		bar=request.form['Bar']
+		consumable=request.form['Consumable']
+		price=request.form['price']
+		find_sells=database.find_sells(bar,consumable,price)
+		if len(find_sells) > 0:
+			return render_template('error.html')
+		else:
+			insert_sells=database.insert_pays(bar,consumable,price)
+			return render_template('submission.html', insert_sells=insert_sells)
+	else:	
+		return render_template('add.html',result8 = " ")
+
+
+
 
 @app.route('/api/modify/update')
 def update():
@@ -202,7 +294,7 @@ def top_spender(bar):
 def get_consumables():
 	return render_template('beer.html', result=database.get_consumables())
 
-@app.route('/api/consumable/<consumable>')
+@app.route('/api/consumable/<consumable>' methods=['GET'])
 def consumables_sold_most(consumable):
 	return render_template('beer.html', text_title=consumable, result1=database.consumable_sold_most(consumable), result2=database.drinkers_who_like(consumable))
 

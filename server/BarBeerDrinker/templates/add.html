@@ -59,7 +59,7 @@
 	{% endfor %}
 	{% for r2 in result2 %}
 		<h1>Adding to Bills</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Bills')}}" method="post">
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Consumable Name:<br>
@@ -68,12 +68,12 @@
 			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
 			Monday -> 1, Tuesday ->2 etc...<br>
 			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
-			<input type="text" name="day" required="required" pattern="[1-7]" minlength="1" maxlength="1"><input type="text" name="hour_occur" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="min_occur" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="day" required="required" min=0 max=7><input type="number" name="hour_occur" required="required" min=0, max=23><input type="number" name="min_occur" required="required" min=0 max=59><br>
 			Month and Day:<br>
 			Ex: May 9th --> 05|09<br>
-			<input type="text" name="month" required="required" pattern="[1-12]" minlength="2" maxlength="2"><input type="text" name="day" required="required" pattern="[1-31]" minlength="2" maxlength="2"><br>
+			<input type="number" name="month" required="required" min=1 max=12><input type="number" name="day" required="required" min=1 max=31><br>
 			TransactionID:<br>
-			<input type="text" name="TransID" required="required"><br>
+			<input type="number" name="TransID" required="required"><br>
 			Tip:<br>
 			<input type="number" name="tip" required="required"><br>
 			Subtotal:<br>
@@ -91,7 +91,7 @@
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Adding to Consumables</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Consumables')}}" method="post">
 			Consumable:<br>
 			<input type="text" name="consumable" required="required"><br>
 			Manufacturer:<br>
@@ -104,11 +104,11 @@
 	{% endfor %}
 	{% for r4 in result4 %}
 		<h1>Adding to Drinker</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Drinker')}}" method="post">
 			Name:<br>
 			<input type="text" name="name" required="required"><br>
 			Phone Number:<br>
-			<input type="text" name="phone_num" required="required" pattern="[0-9]"" minlength="10" maxlength="10"><br>
+			<input type="text" name="phone_num" required="required" pattern="[0-9]{10}"><br>
 			City:<br>
 			<input type="text" name="city" required="required"><br>
 			Address:<br>
@@ -121,7 +121,7 @@
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Adding to Frequents</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Frequents')}}" method="post">
 			Drinker:<br>
 			<input type="text" name="Drinker" required="required"><br>
 			Bar:<br>
@@ -134,7 +134,7 @@
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Adding to Likes</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Likes')}}" method="post">
 			Person:<br>
 			<input type="text" name="Person" required="required"><br>
 			Consumable:<br>
@@ -147,7 +147,7 @@
 	{% endfor %}
 	{% for r7 in result7 %}
 		<h1>Adding to Pays</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Pays')}}" method="post">
 			TransactionID:<br>
 			<input type="text" name="TransactionId" required="required"><br>
 			Name:<br>
@@ -163,7 +163,7 @@
 		{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Adding to Sells</h1>
-		<form action="/submission" method="POST">
+		<form action="{{ url_for('add_Sells')}}" method="POST">
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Consumable:<br> 
