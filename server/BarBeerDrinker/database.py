@@ -41,7 +41,26 @@ def top_consumables(bar):
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
- 
+
+def find_bar(bar, casino, address, city, hours):
+	find_bar=sql.text("SELECT Bar, Casino, Address, City FROM Bars WHERE Bar=:b AND Casino=:casino AND Address=:a AND City=:city")
+	rs = con.execute(find_bar, b=bar, casino=casino, a=address, city=city, h=hours)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
+def find_bar_helper(bar):
+	find_bar=sql.text("SELECT Bar, Casino, Address, City FROM Bars WHERE Bar=:b;")
+	rs = con.execute(find_bar, b=bar)
+	if rs is None:
+		return None
+	return [dict(row) for row in rs]
+
+
+def insert_bar(bar, casino, address, city, hours):
+	insert_bar=sql.text("INSERT INTO Bars (Bar, Casino, Address, City, Hours) VALUES(bar=:b, casino=:casino, address=:a, city=:c, hours=:h);")
+	rs=con.execute(insert_bar, b=bar, casino=casino, a=address, c=city, h=hours)
+
 def get_bill():
 	rs = con.execute("SELECT * FROM Bills;")
 	return [dict(row) for row in rs]
@@ -58,7 +77,7 @@ def consumable_sold_most(consumable):
 	return [dict(row) for row in rs]
 
 def drinkers_who_like(consumable):
-	drinkers_who_like = sql.text("SELECT p.`Name`, b.consumable, count(consumable) as num_bought From Pays p LEFT JOIN Bills b ON p.transactionID = b.transactionID WHERE b.consumable=:c GROUP BY p.`Name`, b.consumable ORDER BY num_bought DESC LIMIT 5;")
+	drinkers_who_like = sql.text("SELECT p.`Name`, count(consumable) as num_bought From Pays p LEFT JOIN Bills b ON p.transactionID = b.transactionID WHERE b.consumable=:c GROUP BY p.`Name`, b.consumable ORDER BY num_bought DESC LIMIT 5;")
 	rs = con.execute(drinkers_who_like, c=consumable)
 	if rs is None:
 		return None
@@ -90,7 +109,7 @@ def spending_of_drinker(drinker):
 	return [dict(row) for row in rs]
 
 def monthly_breakdown(drinker):
-	monthly_breakdown = sql.text("SELECT IF((LEFT(b.month_and_day,2) > 10), LEFT(b.month_and_day,2) AS month, CONCAT(' ',CONCAT('0',LEFT(b.month_and_day,2)) AS month), IF((RIGHT(b.month_and_day,2) > 10)), CONCAT(' ',(RIGHT(b.month_and_day,2))) AS day, CONCAT(' ',(CONCAT('0',RIGHT(b.month_and_day,2)))) AS day), CONCAT(2018,(CONCAT(month,day))) AS prelim_string, REPLACE(prelim_string,' ','/') AS date_format, DATEPART(month, date_format) AS formatted_month, b.total FROM Bills b, Pays p WHERE p.bar=b.bar AND p.Name=:d AND b.transactionID = p.transactionID GROUP BY b.bar ORDER BY total DESC;")
+	monthly_breakdown = sql.text("SELECT CONCAT(LEFT(b.month_and_day,2), RIGHT(b.month_and_day,2)) AS date_bought, b.total  FROM Bills b, Pays p WHERE p.bar=b.bar AND p.Name=:d AND b.transactionID = p.transactionID GROUP BY b.bar ORDER BY total DESC;")
 	rs=con.execute(monthly_breakdown, d = drinker)
 	if rs is None:
 		return None

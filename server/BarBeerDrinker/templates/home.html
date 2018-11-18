@@ -1,13 +1,16 @@
 {% extends "navbar.html" %}
 <!doctype html>
+
+{{ super() }}
+{% block page %}
 <div class="container">
-<div class=text-right">
+<div class=text-center">
+<div class="jumbotron">
+
 	<head>
 		<title> Vegas BBDPLUS!</title>
 	</head>
-{{ super() }}
-{% block page %}
-	<body style = "text-align:center;">
+	<body>
 		<h1>Welcome to Las Vegas</h1>
 		<p>This is the home page for Tina Janulis and Gabriel Rodriguez' extended BarBeerDrinker schema.</p>
 		<h2>Things to note</h2>
@@ -19,7 +22,7 @@
 			<ul>and Casinos</ul>
 		</ul>
 	</body>
-	
+</div>
 </div>
 </div>
 {% endblock %}	

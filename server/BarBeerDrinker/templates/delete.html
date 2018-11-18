@@ -23,35 +23,158 @@
 	{% endfor %}
 	{% for r1 in result1 %}
 		<h1>Deleting From Bars</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Please Fill Out All Fields<br>
+			Bar Name:<br>
+			<input type="text" name="Bar" required="required"><br>
+			Casino name:<br>
+			<input type="text" name="Casino" required="required"><br>
+			Address:<br>
+			<input type="text" name="Bar" required="required"><br>
+			City:<br>
+			<input type="text" name="Casino" required="required"><br>
+			Hours:<br>
+			Please Enter in 24 Hour Format<br>Ex: A bar opens at 3PM and closes at 3AM --> 15|00 -- 03|00 <br>
+			Monday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Tuesday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Wednesday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Thursday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Friday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Saturday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Sunday<br>
+			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<br>
+			Remember that these entries need to already exist in the table to be deleted.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>
 	{% endfor %}
 	{% for r2 in result2 %}
 		<h1>Deleting From Bills</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Bar Name:<br>
+			<input type="text" name="Bar" required="required"><br>
+			Consumable Name:<br>
+			<input type="text" name="Consumable" required="required"><br>
+			Time Occurred:<br>
+			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
+			Monday -> 1, Tuesday ->2 etc...<br>
+			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
+			<input type="text" name="day" required="required" pattern="[1-7]" minlength="1" maxlength="1"><input type="text" name="hour_occur" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="min_occur" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			Month and Day:<br>
+			Ex: May 9th --> 05|09<br>
+			<input type="text" name="month" required="required" pattern="[1-12]" minlength="2" maxlength="2"><input type="text" name="day" required="required" pattern="[1-31]" minlength="2" maxlength="2"><br>
+			TransactionID:<br>
+			<input type="text" name="TransID" required="required"><br>
+			Tip:<br>
+			<input type="number" name="tip" required="required"><br>
+			Subtotal:<br>
+			<input type="number" name="subtotal" required="required"><br>
+			Total (includes 7% tax and tip):<br>
+			<input type="number" name="total" required="required"><br>
+			<br>
+			Remember that these entries need to follow the proper rules or else they will not be deleted.<br>
+			Remeber to delete from the Pays table as well for this information to pass quality checks.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Deleting From Consumables</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Consumable:<br>
+			<input type="text" name="consumable" required="required"><br>
+			Manufacturer:<br>
+			<input type="text" name="manufacturer" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>
 	{% endfor %}
 	{% for r4 in result4 %}
 		<h1>Deleting From Drinker</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Name:<br>
+			<input type="text" name="name" required="required"><br>
+			Phone Number:<br>
+			<input type="text" name="phone_num" required="required" pattern="[0-9]"" minlength="10" maxlength="10"><br>
+			City:<br>
+			<input type="text" name="city" required="required"><br>
+			Address:<br>
+			<input type="text" name="Address" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>	
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Deleting From Frequents</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Drinker:<br>
+			<input type="text" name="Drinker" required="required"><br>
+			Bar:<br>
+			<input type="text" name="Bar" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Deleting From Likes</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Person:<br>
+			<input type="text" name="Person" required="required"><br>
+			Consumable:<br>
+			<input type="text" name="Consumable" required="required"><br>
+		<br>
+		<input type="submit" value="Submit">
+		<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Delete</h2>
 	{% endfor %}
 	{% for r7 in result7 %}
 		<h1>Deleting From Pays</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			TransactionID:<br>
+			<input type="text" name="TransactionId" required="required"><br>
+			Name:<br>
+			<input type="text" name="Name" required="required"><br>
+			Bar:<br>
+			<input type="text" name="Bar" required="required"><br>
+			<br>
+			Remeber to add to the bills table as well for this information to pass quality checks.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Add</h2>
 	{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Deleting From Sells</h1>
-		<p>Textbox with data entry here</p>
+		<form action="/delete" method="post">
+			Bar Name:<br>
+			<input type="text" name="Bar" required="required"><br>
+			Consumable:<br> 
+			<input type="text" name="Consumable" required="required"><br>
+			Price:<br>
+			<input type="number" name="price" required="required"><br>
+			<br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('delete')}}>Go Back To Add</h2>
 	{% endfor %}
 		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
 </div>

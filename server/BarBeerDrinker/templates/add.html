@@ -24,32 +24,32 @@
 
 	{% for r1 in result1 %}
 		<h1>Adding to Bars</h1>
-		<form action="/submission" method="post">
+		<form action="{{ url_for('add_Bar')}}" method="post">
 			Please Fill Out All Fields<br>
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Casino name:<br>
 			<input type="text" name="Casino" required="required"><br>
 			Address:<br>
-			<input type="text" name="Bar" required="required"><br>
+			<input type="text" name="Address" required="required"><br>
 			City:<br>
-			<input type="text" name="Casino" required="required"><br>
+			<input type="text" name="City" required="required"><br>
 			Hours:<br>
 			Please Enter in 24 Hour Format<br>Ex: A bar opens at 3PM and closes at 3AM --> 15|00 -- 03|00 <br>
 			Monday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="m_hour_open" required="required" min=0 max=23 ><input type="number" name="m_Min_open" required="required" min=0 max=59> -- <input type="number" name="m_hour_closed" required="required"  min=0 max=23><input type="number" name="m_Min_closed" required="required" min=0 max=59><br>
 			Tuesday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="tu_hour_open" required="required" min=0 max=23><input type="number" name="tu_Min_open" required="required" min=0 max=59> -- <input type="number" name="tu_hour_closed" required="required" min=0 max=23><input type="number" name="tu_Min_closed" required="required" min=0 max=59><br>
 			Wednesday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="w_hour_open" required="required" min=0 max=23><input type="number" name="w_Min_open" required="required" min=0 max=59> -- <input type="number" name="w_hour_closed" required="required" min=0 max=23><input type="number" name="w_Min_closed" required="required"min=0 max=59><br>
 			Thursday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="th_hour_open" required="required" min=0 max=23"><input type="number" name="th_Min_open" required="required" min=0 max=59> -- <input type="number" name="th_hour_closed" required="required" min=0 max=23><input type="text" name="th_Min_closed" required="required" min=0 max=59><br>
 			Friday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="f_hour_open" required="required" min=0 max=23><input type="number" name="f_Min_open" required="required" min=0 max=59> -- <input type="number" name="f_hour_closed" required="required" min=0 max=23><input type="number" name="f_Min_closed" required="required" min=0 max=59><br>
 			Saturday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="sa_hour_open" required="required"min=0 max=23><input type="number" name="sa_Min_open" required="required" min=0 max=59> -- <input type="number" name="sa_hour_closed" required="required"min=0 max=23><input type="number" name="sa_Min_closed" required="required" min=0 max=59><br>
 			Sunday<br>
-			<input type="text" name="hour_open" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_open" required="required" pattern="[0-59]" minlength="2" maxlength="2"> -- <input type="hour_closed" name="Bar" required="required" pattern="[0-23]" minlength="2" maxlength="2"><input type="text" name="Min_closed" required="required" pattern="[0-59]" minlength="2" maxlength="2"><br>
+			<input type="number" name="su_hour_open" required="required" min=0 max=23><input type="number" name="su_Min_open" required="required" min=0 max=59> -- <input type="number" name="su_hour_closed" required="required" min=0 max=23><input type="number" name="su_Min_closed" required="required" min=0 max=59><br>
 			<br>
 			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
 			<input type="submit" value="Submit">
@@ -163,7 +163,7 @@
 		{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Adding to Sells</h1>
-		<form action="/submission" method="post">
+		<form action="/submission" method="POST">
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Consumable:<br> 
@@ -171,7 +171,7 @@
 			Price:<br>
 			<input type="number" name="price" required="required"><br>
 			<br>
-			Remeber that if you want to add something new that can be sold at different bars, the price must be consistent with the price constraints..<br>
+			Remeber that if you want to add something new that can be sold at different bars, the price must be consistent with the price constraints.<br>
 			<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
