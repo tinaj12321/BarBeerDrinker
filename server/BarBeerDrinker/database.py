@@ -180,6 +180,10 @@ def get_pays():
 	rs = con.execute("SELECT * FROM Pays;")
 	return [dict(row) for row in rs]
 
+def get_frequents():
+	rs = con.execute("SELECT * FROM Frequents;")
+	return [dict(row) for row in rs]
+
 def find_pays(transID, drinker, bar):
 	find_pays=sql.text("SELECT TransactionId, Name, Bar FROM Pays WHERE TransactionId=:t AND Name=:d AND Bar=:b;")
 	rs=con.execute(find_pays,t=transID, d=drinker, b=bar)
