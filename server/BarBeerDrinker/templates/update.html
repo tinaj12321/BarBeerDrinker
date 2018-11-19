@@ -79,33 +79,51 @@
 	{% for r2 in result2 %}
 		<h1>Updating Bills</h1>
 		<form action="{{ url_for('update_Bills')}}" method="post">
-			Bar Name:<br>
-			<input type="text" name="Bar" required="required"><br>
-			Consumable Name:<br>
-			<input type="text" name="Consumable" required="required"><br>
-			Time Occurred:<br>
+			Old Bar Name:<br>
+			<input type="text" name="old_Bar" required="required"><br>
+			New Bar Name:<br>
+			<input type="text" name=" new_Bar" required="required"><br>
+			Old Consumable Name:<br>
+			<input type="text" name="old_Consumable" required="required"><br>
+			New Consumable Name:<br>
+			<input type="text" name="new_Consumable" required="required"><br>
+			Day and Time Occurred:<br>
 			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
 			Monday -> 1, Tuesday ->2 etc...<br>
 			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
-			<input type="number" name="day" required="required" min=0 max=7><input type="number" name="hour_occur" required="required" min=0, max=23><input type="number" name="min_occur" required="required" min=0 max=59><br>
+			Old Time:<br>
+			<input type="number" name="old_day" required="required" min=0 max=7><input type="number" name="old_hour_occur" required="required" min=0, max=23><input type="number" name="old_min_occur" required="required" min=0 max=59><br>
+			New Time:<br>
+			<input type="number" name="new_day" required="required" min=0 max=7><input type="number" name="new_hour_occur" required="required" min=0, max=23><input type="number" name="new_min_occur" required="required" min=0 max=59><br>
 			Month and Day:<br>
 			Ex: May 9th --> 05|09<br>
-			<input type="number" name="month" required="required" min=1 max=12><input type="number" name="day" required="required" min=1 max=31><br>
-			TransactionID:<br>
-			<input type="number" name="TransID" required="required"><br>
-			Tip:<br>
-			<input type="number" name="tip" required="required"><br>
-			Subtotal:<br>
-			<input type="number" name="subtotal" required="required"><br>
-			Total (includes 7% tax and tip):<br>
-			<input type="number" name="total" required="required"><br>
+			Old Date:
+			<input type="number" name="old_month" required="required" min=1 max=12><input type="number" name="old_day" required="required" min=1 max=31><br>
+			New Date:
+			<input type="number" name="new_month" required="required" min=1 max=12><input type="number" name="new_day" required="required" min=1 max=31><br>
+			Old TransactionID:<br>
+			<input type="number" name="old_TransID" required="required"><br>
+			New TransactionID:<br>
+			<input type="number" name="new_TransID" required="required"><br>
+			Old Tip:<br>
+			<input type="number" name="old_tip" required="required"><br>
+			New Tip:<br>
+			<input type="number" name="new_tip" required="required"><br>
+			Old Subtotal:<br>
+			<input type="number" name="old_subtotal" required="required"><br>
+			New Subtotal:<br>
+			<input type="number" name="new_subtotal" required="required"><br>
+			Old Total (includes 7% tax and tip):<br>
+			<input type="number" name="old_total" required="required"><br>
+			New Total (includes 7% tax and tip):<br>
+			<input type="number" name="new_total" required="required"><br>
 			<br>
 			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
 			Remeber to add to the Pays table as well for this information to pass quality checks.<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
-
-		</form>		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		</form>		
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Updating Consumables</h1>
