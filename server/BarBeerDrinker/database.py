@@ -43,13 +43,13 @@ def top_consumables(bar):
 	return [dict(row) for row in rs]
 
 def find_bar(bar, casino, address, city, hours):
-	find_bar=sql.text("SELECT Bar, Casino, Address, City FROM Bars WHERE Bar=:b AND Casino=:casino AND Address=:a AND City=:city")
+	find_bar=sql.text("SELECT Bar, Casino, Address, City, Hours FROM Bars WHERE Bar=:b AND Casino=:casino AND Address=:a AND City=:city")
 	rs = con.execute(find_bar, b=bar, casino=casino, a=address, city=city, h=hours)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
-def find_bar_helper(bar)
+def find_bar_helper(bar):
 	find_bar_helper=sql.text("SELECT Bar FROM Bar b WHERE Bar=:b")
 	rs = con.execute(find_bar_helper, b=bar)
 	if rs is None:
@@ -144,21 +144,21 @@ def monthly_breakdown(drinker):
 	return [dict(row) for row in rs]
 
 def find_drinker(drinker, phone, addr, city):
-	find_drinker=sql.text("SELECT `Name`, `Phone Number`, Address, City FROM Drinker WHERE `Name`=:n AND `Phone Number`=:p AND Address=:a AND City=:c;")
+	find_drinker=sql.text("SELECT `\ufeffName`, `Phone Number`, Address, City FROM Drinker WHERE `\ufeffName`=:n AND `Phone Number`=:p AND Address=:a AND City=:c;")
 	rs=con.execute(find_drinker, n=drinker, p=phone, a=addr, c=city)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
 def find_drinker_helper(drinker):
-	find_drinker_helper=sql.text("SELECT `Name` FROM Drinker WHERE `Name`=:n;")
+	find_drinker_helper=sql.text("SELECT `\ufeffName` FROM Drinker WHERE `\ufeffName`=:n;")
 	rs=con.execute(find_drinker_helper, n=drinker)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
 def insert_drinker(drinker,phone,addr,city):
-	insert_drinker=sql.text("INSERT INTO Drinker(`Name`, `Phone Number`, Address, City) VALUES (:n, :p, :a,:c);")
+	insert_drinker=sql.text("INSERT INTO Drinker(`\ufeffName`, `Phone Number`, Address, City) VALUES (:n, :p, :a,:c);")
 	rs=con.execute(insert_drinker, n=drinker, p=phone, a=addr, c=city)
 
 def get_likes():
@@ -200,7 +200,7 @@ def find_sells(bar, consumable, price):
 	rs=con.execute(find_sells, b=bar, c=consumable, p=price)
 	if rs is None:
 		return None
-	return [dict(row)]
+	return [dict(row) for row in rs]
 
 def insert_sells(bar,consumable,price):
 	insert_sells=sql.text("INSERT INTO Sells(Bar,Consumable,price) VALUES(:b, :c, :p);")
@@ -213,8 +213,12 @@ def find_frequents(drinker,bar):
 		return None
 	return [dict(row) for row in rs]
 
+
 def insert_frequents(drinker,bar):
-	insert_frequents=sql.text("INSERT INTO Frequents(Drinker, Bar) VALUES :d, :b;")
+	insert_frequents=sql.text("INSERT INTO Frequents(Drinker, Bar) VALUES(:d, :b);")
 	rs=con.execute(insert_frequents, d=drinker, b=bar)
 
+"""def time_pattern(hours):
+	time_pattern=sql.text("SELECT  b1.`Bar` AS bar, b2.`item`  AS consumable,b2.`occurred` AS occurred,b2.`transactionID` AS transactionID,b2.`subtotal` AS subtotal,b2.`total with tip` AS total FROM `Bars` b1, `Bills` b2 WHERE b1.`Bar` = b2.`Bar` AND (SUBSTRING(b2.`occurred`, 3,6) > SUBSTRING((SUBSTRING(b1.`Hours`,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 1, 4)  OR  SUBSTRING(b2.`time_occurred`, 3,6)< SUBSTRING((SUBSTRING(b1.`Hours`,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 5, 9));")
+	rs=con.execute(time_pattern, h=hours)"""
 
