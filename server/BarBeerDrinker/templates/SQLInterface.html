@@ -1,0 +1,24 @@
+{% extends "navbar.html" %}
+<!doctype html>
+<div class="container">
+<div class="jumbotron">
+	<head>
+		<title> Write your own queries! </title>
+	</head>
+{{ super() }}
+
+{% for r in result %}
+		<h1>Adding to Consumables</h1>
+		<form action="{{ url_for('add_Consumables')}}" method="POST">
+			Please Fill Out All Fields<br>
+			Consumable:<br>
+			<input type="text" name="consumable" required="required"><br>
+			Manufacturer:<br>
+			<input type="text" name="manufacturer" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
+
+{% endfor %}
