@@ -105,7 +105,8 @@ def add_Bills():
 		tax_total=float(subtotal+0.07*subtotal)
 		trans_time = day_of_week+" "+hour_occur + min_occur
 		trans_day = day+month
-		if len(find_bill) > 0 or total != tax_total+tip:
+		time_pattern=database.time_pattern(hour_occur, )
+		if len(find_bill) > 0 or total != tax_total+tip or len(time_pattern)==0:
 			return render_template('error.html')
 		else:
 			insert_bill=database.insert_bill(bar, consumable, trans_time, trans_day, transactionID, subtotal, tip, total)
@@ -154,7 +155,8 @@ def add_Frequents():
 		bar=request.form['Bar']
 		find_frequents=database.find_frequents(drinker,bar)
 		find_drinker_helper=database.find_drinker_helper(drinker)
-		if len(find_frequents) > 0 and len(find_drinker_helper) == 0:
+		drinker_pattern_frequents=database.drinker_pattern_frequents(drinker,bar)
+		if len(find_frequents) > 0 and len(find_drinker_helper) == 0 and len(drinker_pattern_frequents)==0:
 			return render_template('error.html')
 		else:
 			insert_frequents=database.insert_frequents(drinker,bar)
@@ -170,7 +172,8 @@ def add_Likes():
 		consumable=request.form['Consumable']
 		find_likes=database.find_likes(drinker,consumable)
 		find_drinker_helper=database.find_drinker_helper(drinker)
-		if len(find_likes) > 0 and len(find_drinker_helper)==0 and len(find_consumable_helper)==0:
+		drinker_pattern_likes=database.drinker_pattern_likes(drinker,consumable)
+		if len(find_likes) > 0 and len(find_drinker_helper)==0 and len(find_consumable_helper)==0 and len(drinker_pattern_likes)==0:
 			return render_template('error.html')
 		else:
 			insert_frequents=database.insert_frequents(drinker,consumable)
