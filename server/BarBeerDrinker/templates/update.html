@@ -11,18 +11,18 @@
 	<ul class="list-group">	
 	{% for r in result %}	
 		<h1>What do you want to update?</h1>
-			<li class="list-group-item"><a href={{ url_for('update_Bars')}}>Bars</li>
-			<li class="list-group-item"><a href={{ url_for('update_Bills')}}>Bills</li>
-			<li class="list-group-item"><a href={{ url_for('update_Consumables')}}>Consumables</li>
-			<li class="list-group-item"><a href={{ url_for('update_Drinker')}}>Drinker</li>
-			<li class="list-group-item"><a href={{ url_for('update_Frequents')}}>Frequents</li>
-			<li class="list-group-item"><a href={{ url_for('update_Likes')}}>Likes</li>
-			<li class="list-group-item"><a href={{ url_for('update_Pays')}}>Pays</li>
-			<li class="list-group-item"><a href={{ url_for('update_Sells')}}>Sells</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Bars')}}">Bars</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Bills')}}">Bills</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Consumables')}}">Consumables</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Drinker')}}">Drinker</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Frequents')}}">Frequents</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Likes')}}">Likes</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Pays')}}">Pays</li>
+			<li class="list-group-item"><a href="{{ url_for('update_Sells')}}"">Sells</li>
 	</ul>
 	{% endfor %}
 	{% for r1 in result1 %}
-		<h1>Updating Bars</h1><form action="{{ url_for('update_Bar')}}" method="post">
+		<h1>Updating Bars</h1><form action="{{ url_for('update_Bars')}}" method="post">
 			Please Fill Out All Fields<br>If you do not want to change something please rewrite it in new text field<br>
 			Old Bar Name:<br>
 			<input type="text" name="old_Bar" required="required"><br>
@@ -124,7 +124,7 @@
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>		
-		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		<h2><a href = "{{ url_for('update')}}">Go Back To Update</h2>
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Updating Consumables</h1>
@@ -142,7 +142,7 @@
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
-		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		<h2><a href = "{{ url_for('update')}}">Go Back To Update</h2>
 	{% endfor %}
 	{% for r4 in result4 %}
 		<h1>Updating Drinker</h1>

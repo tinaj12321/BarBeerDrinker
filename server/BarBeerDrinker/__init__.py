@@ -3,8 +3,6 @@ from BarBeerDrinker import database
 
 app = Flask(__name__)
 
-
-
 @app.route('/api/drinker')
 def get_drinkers():
 	return render_template('drinker.html', result=database.get_drinkers())
@@ -321,4 +319,8 @@ def hello_world():
 @app.route('/about')
 def about():
 	return render_template('about.html')
+
+@app.route('/queries')
+def queries():
+	return render_remplate('SQLInterface.html', result=" ")
  
