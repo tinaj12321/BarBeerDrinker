@@ -22,36 +22,120 @@
 	</ul>
 	{% endfor %}
 	{% for r1 in result1 %}
-		<h1>Updating Bars</h1>
-		<p>Textbox with data entry here</p>
+		<h1>Updating Bars</h1><form action="{{ url_for('update_Bar')}}" method="post">
+			Please Fill Out All Fields<br>If you do not want to change something please rewrite it<br>
+			Old Bar Name:<br>
+			<input type="text" name="old_Bar" required="required"><br>
+			New Bar Name:<br>
+			<input type="text" name="new_Bar" required="required"><br>
+			Old Casino name:<br>
+			<input type="text" name="old_Casino" required="required"><br>
+			New Casino name:<br>
+			<input type="text" name="new_Casino" required="required"><br>
+			Old Address:<br>
+			<input type="text" name="old_Address" required="required"><br>
+			New Address:<br>
+			<input type="text" name="new_Address" required="required"><br>
+			Old City:<br>
+			<input type="text" name="old_City" required="required"><br>
+			New City:<br>
+			<input type="text" name="new_City" required="required"><br>
+			Hours:<br>
+			Please Enter in 24 Hour Format<br>Ex: A bar opens at 3PM and closes at 3AM --> 15|00 -- 03|00 <br>
+			Old Monday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Monday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Tuesday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Tuesday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Wednesday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Wednesday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Thursday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Thursday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Friday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Friday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Saturday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Saturday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Old Sunday<br>
+			<input type="number" name="old_m_hour_open" required="required" min=0 max=23 ><input type="number" name="old_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="old_m_hour_closed" required="required"  min=0 max=23><input type="number" name="old_m_Min_closed" required="required" min=0 max=59><br>
+			New Sunday<br>
+			<input type="number" name="new_m_hour_open" required="required" min=0 max=23 ><input type="number" name="new_m_Min_open" required="required" min=0 max=59> -- <input type="number" name="new_m_hour_closed" required="required"  min=0 max=23><input type="number" name="new_m_Min_closed" required="required" min=0 max=59><br>
+			Remember that these entries need to follow the proper rules or else they will not be updated in.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r2 in result2 %}
 		<h1>Updating Bills</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Bills')}}" method="post">
+			Bar Name:<br>
+			<input type="text" name="Bar" required="required"><br>
+			Consumable Name:<br>
+			<input type="text" name="Consumable" required="required"><br>
+			Time Occurred:<br>
+			Please Format With Day of the Week Before Time Occurred in 24 hour time<br>
+			Monday -> 1, Tuesday ->2 etc...<br>
+			Ex: Occurred on a thursday at 4:55PM --> 4|16|55<br>
+			<input type="number" name="day" required="required" min=0 max=7><input type="number" name="hour_occur" required="required" min=0, max=23><input type="number" name="min_occur" required="required" min=0 max=59><br>
+			Month and Day:<br>
+			Ex: May 9th --> 05|09<br>
+			<input type="number" name="month" required="required" min=1 max=12><input type="number" name="day" required="required" min=1 max=31><br>
+			TransactionID:<br>
+			<input type="number" name="TransID" required="required"><br>
+			Tip:<br>
+			<input type="number" name="tip" required="required"><br>
+			Subtotal:<br>
+			<input type="number" name="subtotal" required="required"><br>
+			Total (includes 7% tax and tip):<br>
+			<input type="number" name="total" required="required"><br>
+			<br>
+			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
+			Remeber to add to the Pays table as well for this information to pass quality checks.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+
+		</form>		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Updating Consumables</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r4 in result4 %}
 		<h1>Updating Drinker</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Updating Frequents</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Updating Likes</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r7 in result7 %}
 		<h1>Updating Pays</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Updating Sells</h1>
 		<p>Textbox with data entry here</p>
+		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
 </div>
