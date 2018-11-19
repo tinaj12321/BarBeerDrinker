@@ -11,6 +11,7 @@
 	<ul class="list-group">
 	{% for r in result %}	
 		<h1>What do you want to add to?</h1>
+		<h4>Please remember that if you are adding to a table that proper constraints must be followed. A person cannot be added to Likes or Frequents without being in Drinkers first. A Bar cannot sell a beer that does not exist. etc..</h4>
 			<li class="list-group-item"><a href={{ url_for('add_Bar')}}>Bars</li>
 			<li class="list-group-item"><a href={{ url_for('add_Bills')}}>Bills</li>
 			<li class="list-group-item"><a href={{ url_for('add_Consumables')}}>Consumables</li>
@@ -21,7 +22,6 @@
 			<li class="list-group-item"><a href={{ url_for('add_Sells')}}>Sells</li>
 	</ul>
 	{% endfor %}
-
 	{% for r1 in result1 %}
 		<h1>Adding to Bars</h1>
 		<form action="{{ url_for('add_Bar')}}" method="post">
@@ -60,6 +60,7 @@
 	{% for r2 in result2 %}
 		<h1>Adding to Bills</h1>
 		<form action="{{ url_for('add_Bills')}}" method="post">
+			Please Fill Out All Fields<br>
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Consumable Name:<br>
@@ -92,6 +93,7 @@
 	{% for r3 in result3 %}
 		<h1>Adding to Consumables</h1>
 		<form action="{{ url_for('add_Consumables')}}" method="POST">
+			Please Fill Out All Fields<br>
 			Consumable:<br>
 			<input type="text" name="consumable" required="required"><br>
 			Manufacturer:<br>
@@ -105,6 +107,7 @@
 	{% for r4 in result4 %}
 		<h1>Adding to Drinker</h1>
 		<form action="{{ url_for('add_Drinker')}}" method="post">
+			Please Fill Out All Fields<br>
 			Name:<br>
 			<input type="text" name="name" required="required"><br>
 			Phone Number:<br>
@@ -122,11 +125,13 @@
 	{% for r5 in result5 %}
 		<h1>Adding to Frequents</h1>
 		<form action="{{ url_for('add_Frequents')}}" method="post">
+			Please Fill Out All Fields<br>
 			Drinker:<br>
 			<input type="text" name="Drinker" required="required"><br>
 			Bar:<br>
 			<input type="text" name="Bar" required="required"><br>
 			<br>
+			Remember that you need a drinker and a bar for these to work, so if you are using new information make sure to add those first.<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
@@ -135,11 +140,13 @@
 	{% for r6 in result6 %}
 		<h1>Adding to Likes</h1>
 		<form action="{{ url_for('add_Likes')}}" method="post">
+			Please Fill Out All Fields<br>
 			Person:<br>
 			<input type="text" name="Person" required="required"><br>
 			Consumable:<br>
 			<input type="text" name="Consumable" required="required"><br>
 		<br>
+		Remember that you need a drinker and a beer for this to work, so if you are using new information make sure to add those first.<br>
 		<input type="submit" value="Submit">
 		<input type = "reset">
 		</form>
@@ -148,6 +155,7 @@
 	{% for r7 in result7 %}
 		<h1>Adding to Pays</h1>
 		<form action="{{ url_for('add_Pays')}}" method="post">
+			Please Fill Out All Fields<br>
 			TransactionID:<br>
 			<input type="text" name="TransactionId" required="required"><br>
 			Name:<br>
@@ -155,7 +163,7 @@
 			Bar:<br>
 			<input type="text" name="Bar" required="required"><br>
 			<br>
-			Remeber to add to the bills table as well for this information to pass quality checks.<br>
+			Remeber to add to the bills table first for this information to pass quality checks.<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
@@ -164,6 +172,7 @@
 	{% for r8 in result8 %}
 		<h1>Adding to Sells</h1>
 		<form action="{{ url_for('add_Sells')}}" method="POST">
+			Please Fill Out All Fields<br>
 			Bar Name:<br>
 			<input type="text" name="Bar" required="required"><br>
 			Consumable:<br> 
@@ -171,7 +180,7 @@
 			Price:<br>
 			<input type="number" name="price" required="required"><br>
 			<br>
-			Remeber that if you want to add something new that can be sold at different bars, the price must be consistent with the price constraints.<br>
+			Remeber that if you want to add something new that can be sold at different bars, the price must be consistentently less than, greater than, or equal to the other beers at other bars.<br>
 			<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">

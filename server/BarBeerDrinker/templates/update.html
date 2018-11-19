@@ -23,7 +23,7 @@
 	{% endfor %}
 	{% for r1 in result1 %}
 		<h1>Updating Bars</h1><form action="{{ url_for('update_Bar')}}" method="post">
-			Please Fill Out All Fields<br>If you do not want to change something please rewrite it<br>
+			Please Fill Out All Fields<br>If you do not want to change something please rewrite it in new text field<br>
 			Old Bar Name:<br>
 			<input type="text" name="old_Bar" required="required"><br>
 			New Bar Name:<br>
@@ -79,6 +79,7 @@
 	{% for r2 in result2 %}
 		<h1>Updating Bills</h1>
 		<form action="{{ url_for('update_Bills')}}" method="post">
+			Please Fill Out All Fields<br>If you do not want to change something please rewrite it in new text field<br>
 			Old Bar Name:<br>
 			<input type="text" name="old_Bar" required="required"><br>
 			New Bar Name:<br>
@@ -119,7 +120,7 @@
 			<input type="number" name="new_total" required="required"><br>
 			<br>
 			Remember that these entries need to follow the proper rules or else they will not be added in.<br>
-			Remeber to add to the Pays table as well for this information to pass quality checks.<br>
+			Remeber to update the Pays table as well for this information to pass quality checks.<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>		
@@ -127,32 +128,131 @@
 	{% endfor %}
 	{% for r3 in result3 %}
 		<h1>Updating Consumables</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Consumables')}}" method="POST">
+			Please Fill Out All Fields<br>
+			Old Consumable:<br>
+			<input type="text" name="old_consumable" required="required"><br>
+			New Consumable:<br>
+			<input type="text" name="new_consumable" required="required"><br>
+			Old Manufacturer:<br>
+			<input type="text" name="old_manufacturer" required="required"><br>
+			New Manufacturer:<br>
+			<input type="text" name="new_manufacturer" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r4 in result4 %}
 		<h1>Updating Drinker</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Drinker')}}" method="post">
+			Please Fill Out All Fields<br>
+			Old Name:<br>
+			<input type="text" name="old_name" required="required"><br>
+			New Name:<br>
+			<input type="text" name="new_name" required="required"><br>
+			Old Phone Number:<br>
+			<input type="text" name="old_phone_num" required="required" pattern="[0-9]{10}"><br>
+			New Phone Number:<br>
+			<input type="text" name="new_phone_num" required="required" pattern="[0-9]{10}"><br>
+			Old City:<br>
+			<input type="text" name="old_city" required="required"><br>
+			New City:<br>
+			<input type="text" name="new_city" required="required"><br>
+			Old Address:<br>
+			<input type="text" name="old_Address" required="required"><br>
+			New Address:<br>
+			<input type="text" name="new_Address" required="required"><br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Updating Frequents</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Frequents')}}" method="post">
+			Please Fill Out All Fields<br>
+			Old Drinker:<br>
+			<input type="text" name="old_Drinker" required="required"><br>
+			New Drinker:<br>
+			<input type="text" name="new_Drinker" required="required"><br>
+			Old Bar:<br>
+			<input type="text" name="old_Bar" required="required"><br>
+			New Bar:<br>
+			<input type="text" name="new_Bar" required="required"><br>
+			<br>
+			Remember that you need a drinker and a bar for these to work, so if you are using new information make sure to add those first.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r6 in result6 %}
 		<h1>Updating Likes</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Likes')}}" method="post">
+			Please Fill Out All Fields<br>
+			Old Person:<br>
+			<input type="text" name="old_Person" required="required"><br>
+			New Person:<br>
+			<input type="text" name="new_Person" required="required"><br>
+			Old Consumable:<br>
+			<input type="text" name="old_Consumable" required="required"><br>
+			New Consumable:<br>
+			<input type="text" name="new_Consumable" required="required"><br>
+			<br>
+			Remember that you need a drinker and a beer for this to work, so if you are using new information make sure to add those first.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r7 in result7 %}
 		<h1>Updating Pays</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Pays')}}" method="post">
+			Please Fill Out All Fields<br>
+			Old TransactionID:<br>
+			<input type="text" name="old_TransactionId" required="required"><br>
+			New TransactionID:<br>
+			<input type="text" name="new_TransactionId" required="required"><br>
+			Old Name:<br>
+			<input type="text" name="old_Name" required="required"><br>
+			New Name:<br>
+			<input type="text" name="new_Name" required="required"><br>
+			Old Bar:<br>
+			<input type="text" name="old_Bar" required="required"><br>
+			New Bar:<br>
+			<input type="text" name="new_Bar" required="required"><br>
+			<br>
+			Remeber to update the bills table first for this information to pass quality checks.<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Updating Sells</h1>
-		<p>Textbox with data entry here</p>
+		<form action="{{ url_for('update_Sells')}}" method="POST">
+			Please Fill Out All Fields<br>
+			Old Bar Name:<br>
+			<input type="text" name="old_Bar" required="required"><br>
+			New Bar Name:<br>
+			<input type="text" name="new_Bar" required="required"><br>
+			Old Consumable:<br> 
+			<input type="text" name="old_Consumable" required="required"><br>
+			New Consumable:<br> 
+			<input type="text" name="new_Consumable" required="required"><br>
+			Old Price:<br>
+			<input type="number" name="old_price" required="required"><br>
+			New Price:<br>
+			<input type="number" name="new_price" required="required"><br>
+			<br>
+			Remeber that if you want to update something new that can be sold at different bars, the price must be consistentently less than, greater than, or equal to the other beers at other bars.<br>
+			<br>
+			<input type="submit" value="Submit">
+			<input type = "reset">
+		</form>
 		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
 	{% endfor %}
 		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
