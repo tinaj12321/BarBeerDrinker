@@ -5,10 +5,10 @@
 {{ super() }}
 <div class = "container">
  <div class = "text-center">
+ <h1>Consumables Table</h1>
   <ul class="list-group">
-    <h1>Consumables Table</h1>
     {% for r in result %}
-        <li class="list-group-item">{{r}}</li>
+        <li class="list-group-item">{{ r }}</li>
     {% endfor %}
    </ul>
  </div>

@@ -9,7 +9,7 @@
 {% block page %}
 {% for r in result %}
 		<h1>Write your query below</h1>
-		<form action="{{ url_for('query')}}" method="POST">
+		<form action="{{ url_for('queries_func')}}" method="POST">
 			Please Fill Out All Fields<br>
 			SELECT:<br>
 			<input type="text" name="Select" required="required"><br>
@@ -22,7 +22,8 @@
 			<input type = "reset">
 		</form>
 		<h2><a href = "{{ url_for('hello_world')}}">Go Back To Home</h2>
+		{% endfor %}
 </div>
 </div>
-{% endfor %}
+
 {% endblock %}
