@@ -6,19 +6,23 @@
 		<title> Write your own queries! </title>
 	</head>
 {{ super() }}
-
+{% block page %}
 {% for r in result %}
-		<h1>Adding to Consumables</h1>
-		<form action="{{ url_for('add_Consumables')}}" method="POST">
+		<h1>Write your query below</h1>
+		<form action="{{ url_for('query')}}" method="POST">
 			Please Fill Out All Fields<br>
-			Consumable:<br>
-			<input type="text" name="consumable" required="required"><br>
-			Manufacturer:<br>
-			<input type="text" name="manufacturer" required="required"><br>
+			SELECT:<br>
+			<input type="text" name="Select" required="required"><br>
+			FROM:<br>
+			<input type="text" name="From" required="required"><br>
+			WHERE:<br>
+			<input type="text" name="where"><br>
 			<br>
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
-		<h2><a href = {{ url_for('add')}}>Go Back To Add</h2>
-
+		<h2><a href = "{{ url_for('hello_world')}}">Go Back To Home</h2>
+</div>
+</div>
 {% endfor %}
+{% endblock %}
