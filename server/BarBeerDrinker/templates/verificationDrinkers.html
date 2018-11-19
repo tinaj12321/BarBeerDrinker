@@ -1,0 +1,16 @@
+{% extends "navbar.html" %}
+
+{% block page %}
+
+{{ super() }}
+<div class = "container">
+ <div class = "text-center">
+  <ul class="list-group">
+    <h1>Drinkers Table</h1>
+    {% for r in result %}
+        <li class="list-group-item">{{r}}</li>
+    {% endfor %}
+   </ul>
+ </div>
+</div>
+{% endblock page %}

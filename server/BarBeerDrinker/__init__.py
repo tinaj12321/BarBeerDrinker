@@ -7,6 +7,38 @@ app = Flask(__name__)
 def get_drinkers():
 	return render_template('drinker.html', result=database.get_drinkers())
 
+@app.route('/api/queries')
+def queries():
+	a=request.form['Select'] 
+	b=request.form['From'] 
+	c=request.form['Where'] 
+	return	render_template('SQLInterface.html',result=database.queries(a,b,c),a=a,b=b,c=c)
+
+@app.route('/api/verify/drinkers')
+def get_drinkers_ver():
+	return render_template('verificationDrinkers.html', result=database.get_drinkers_ver())
+@app.route('/api/verify/consumables')
+def get_consumables_ver():
+	return render_template('verificationConsumables.html', result=database.get_consumables_ver())
+@app.route('/api/verify/bills')
+def get_bills_ver():
+	return render_template('verificationBills.html', result=database.get_bills_ver())
+@app.route('/api/verify/bars')
+def get_bars_ver():
+	return render_template('verificationBars.html', result=database.get_bars_ver())
+@app.route('/api/verify/drinkers')
+def get_drinkers_ver():
+	return render_template('verificationDrinkers.html', result=database.get_drinkers_ver())
+@app.route('/api/verify/likes')
+def get_likes_ver():
+	return render_template('verificationLikes.html', result=database.get_likes_ver())
+@app.route('/api/verify/pays')
+def get_pays_ver():
+	return render_template('verificationPays.html', result=database.get_pays_ver())
+@app.route('/api/verify/sells')
+def get_sells_ver():
+	return render_template('verificationSells.html', result=database.get_sells_ver())
+
 @app.route('/api/drinker/<drinker>')
 def info_on_drinker(drinker):
 	result2=database.beers_ordered_most(drinker)

@@ -8,9 +8,44 @@ engine = create_engine(config.database_uri)
 con = engine.connect()
 
 #bar function
+def queries(a,b,c):
+	result=sql.text("SELECT :a FROM :b WHERE :c")
+	rs = con.execute(result, a=a,b=b,c=c)
+	return [dict(row) for row in rs]
+
+
+def get_bars_ver():
+	rs = con.execute("SELECT * FROM Bars;")
+	return [dict(row) for row in rs]
+def get_bills_ver():
+	rs = con.execute("SELECT * FROM Bills;")
+	return [dict(row) for row in rs]
+def get_consumables_ver():
+	rs = con.execute("SELECT * FROM Consumables;")
+	return [dict(row) for row in rs]
+def get_frequents_ver():
+	rs = con.execute("SELECT * FROM Frequents;")
+	return [dict(row) for row in rs]
+def get_likes_ver():
+	rs = con.execute("SELECT * FROM Likes;")
+	return [dict(row) for row in rs]
+def get_pays_ver():
+	rs = con.execute("SELECT * FROM Pays;")
+	return [dict(row) for row in rs]
+def get_sells_ver():
+	rs = con.execute("SELECT * FROM Sells;")
+	return [dict(row) for row in rs]
+def get_drinkers_ver():
+	rs = con.execute("SELECT * FROM Drinkers;")
+	return [dict(row) for row in rs]
+
+
+
 def get_bars():
 	rs = con.execute("SELECT * FROM Bars;")
 	return [dict(row) for row in rs]
+
+
 
 def get_casinos():
 	rs = con.execute("SELECT DISTINCT Casino, City, Address, City FROM Bars;")
