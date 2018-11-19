@@ -168,7 +168,7 @@
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
-		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		<h2><a href = "{{ url_for('update')}}">Go Back To Update</h2>
 	{% endfor %}
 	{% for r5 in result5 %}
 		<h1>Updating Frequents</h1>
@@ -229,7 +229,7 @@
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
-		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		<h2><a href = "{{ url_for('update')}}">Go Back To Update</h2>
 	{% endfor %}
 	{% for r8 in result8 %}
 		<h1>Updating Sells</h1>
@@ -253,9 +253,9 @@
 			<input type="submit" value="Submit">
 			<input type = "reset">
 		</form>
-		<h2><a href = {{ url_for('update')}}>Go Back To Update</h2>
+		<h2><a href = "{{ url_for('update')}}">Go Back To Update</h2>
 	{% endfor %}
-		<h2><a href = {{ url_for('modify')}}>Go Back</h2>
+		<h2><a href = "{{ url_for('modify')}}">Go Back</h2>
 </div>
 </div>
 </div>

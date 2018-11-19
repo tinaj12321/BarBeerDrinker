@@ -222,14 +222,14 @@ def time_pattern(hours, time_occurred):
 	time_pattern=sql.text("SELECT  b1.`Bar`, b2.`Consumable` ,b2.`time_occurred`, b2.`transactionID`, b2.`subtotal`, b2.`total` FROM `Bars` b1, `Bills` b2 WHERE b1.`Bar` = b2.`Bar` AND (SUBSTRING(:t, 3,6) > SUBSTRING((SUBSTRING(:h,((SUBSTRING(:t, 1, 1))*10)-9, 9)) , 1, 4)  OR  SUBSTRING(:t, 3,6)< SUBSTRING((SUBSTRING(:h,((SUBSTRING(:t, 1, 1))*10)-9, 9)) , 5, 9));")
 	rs=con.execute(time_pattern, h=hours, t=time_occurred)
 
-def drinker_pattern_likes(drinker, consumable)
+def drinker_pattern_likes(drinker, consumable):
 	drinker_pattern=sql.text("Select DISTINCT f.`Drinker`, f.`Bar` from `frequents` f , `likes` l, `sells` s where f.`Drinker`=:d and f.`Bar`=s.`Bars` and s.`Consumable`=:c;")
 	rs=con.execute(drinker_pattern, d=drinker, c=consumable)
 	if rs is None:
 		return None
 	return [dict(row) for row in rs]
 
-def drinker_pattern_frequents(drinker, bar)
+def drinker_pattern_frequents(drinker, bar):
 	drinker_pattern=sql.text("Select DISTINCT f.`Drinker`, f.`Bar` from `frequents` f , `likes` l, `sells` s where :d=l.Person and :b=s.`Bars` and s.`Consumable`=l.Consumable;")
 	rs=con.execute(drinker_pattern, d=drinker, b=bar)
 	if rs is None:
