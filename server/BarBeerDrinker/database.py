@@ -64,11 +64,11 @@ def find_bill(consumable, transactionID):
 	return [dict(row) for row in rs]
 
 def insert_bill(bar, consumable, trans_time, trans_day, transID, subtotal, tip, total):
-	insert_bill=sql.text("INSERT INTO Bills (Bar, Consumable, time_occurred, month_and_day, transactionId, subtotal, tip, total) VALUES(Bar=:b, Consumable=:c, time_occurred=:ti, month_and_day=:m, transactionId=:trans, subtotal=:sub, tip=:tip, total=:total);")
+	insert_bill=sql.text("INSERT INTO Bills (Bar, Consumable, time_occurred, month_and_day, transactionId, subtotal, tip, total) VALUES(:b, :c, :ti, :m, :trans, :sub, :tip, :total);")
 	rs=con.execute(insert_bill, b=bar, c=consumable, ti=trans_time, m=trans_day, trans=transID, sub=subtotal, tip=tip, total=total)
 
 def insert_bar(bar, casino, address, city, hours):
-	insert_bar=sql.text("INSERT INTO Bars (Bar, Casino, Address, City, Hours) VALUES(bar=:b, casino=:casino, address=:a, city=:c, hours=:h);")
+	insert_bar=sql.text("INSERT INTO Bars (Bar, Casino, Address, City, Hours) VALUES(:b, :casino, :a, :c, :h);")
 	rs=con.execute(insert_bar, b=bar, casino=casino, a=address, c=city, h=hours)
 
 def get_bill():
