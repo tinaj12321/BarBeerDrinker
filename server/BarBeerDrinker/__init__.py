@@ -308,7 +308,7 @@ def get_consumables():
 def consumables_sold_most(consumable):
 	return render_template('beer.html', text_title=consumable, result1=database.consumable_sold_most(consumable), result2=database.drinkers_who_like(consumable))
 
-@app.route('/submission', methods=['GET', 'POST'])
+@app.route('/api/submission', methods=['GET', 'POST'])
 def submission():
 	return render_template('submission.html')
 
