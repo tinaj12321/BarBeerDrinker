@@ -218,7 +218,7 @@ def insert_frequents(drinker,bar):
 	insert_frequents=sql.text("INSERT INTO Frequents(Drinker, Bar) VALUES(:d, :b);")
 	rs=con.execute(insert_frequents, d=drinker, b=bar)
 
-"""def time_pattern(hours):
-	time_pattern=sql.text("SELECT  b1.`Bar` AS bar, b2.`item`  AS consumable,b2.`occurred` AS occurred,b2.`transactionID` AS transactionID,b2.`subtotal` AS subtotal,b2.`total with tip` AS total FROM `Bars` b1, `Bills` b2 WHERE b1.`Bar` = b2.`Bar` AND (SUBSTRING(b2.`occurred`, 3,6) > SUBSTRING((SUBSTRING(b1.`Hours`,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 1, 4)  OR  SUBSTRING(b2.`time_occurred`, 3,6)< SUBSTRING((SUBSTRING(b1.`Hours`,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 5, 9));")
-	rs=con.execute(time_pattern, h=hours)"""
+def time_pattern(hours):
+	time_pattern=sql.text("SELECT  b1.`Bar` AS bar, b2.`Consumable`, b2.`time_occurred`,b2.`transactionID` AS transactionID,b2.`subtotal` AS subtotal,b2.`total with tip` AS total FROM `Bars` b1, `Bills` b2 WHERE b1.`Bar` = b2.`Bar` AND (SUBSTRING(b2.`time_occurred`, 3,6) > SUBSTRING((SUBSTRING(:h,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 1, 4)  OR  SUBSTRING(b2.`time_occurred`, 3,6)< SUBSTRING((SUBSTRING(:h,((SUBSTRING(b2.`time_occurred`, 1, 1))*10)-9, 9)) , 5, 9));")
+	rs=con.execute(time_pattern, h=hours)
 
